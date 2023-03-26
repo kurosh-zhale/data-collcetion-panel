@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LayoutComponent } from './layout.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
@@ -8,9 +9,9 @@ describe('LayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LayoutComponent ]
-    })
-    .compileComponents();
+      declarations: [LayoutComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LayoutComponent);
     component = fixture.componentInstance;
