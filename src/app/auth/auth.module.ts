@@ -7,7 +7,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { AuthRoutingModule } from './routes/auth-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from './services/authentication.service';
-
+import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [
     LayoutComponent,
@@ -15,7 +16,13 @@ import { AuthenticationService } from './services/authentication.service';
     RegisterComponent,
     ForgotPasswordComponent,
   ],
-  imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    SharedModule,
+  ],
   providers: [AuthenticationService],
 })
 export class AuthModule {}

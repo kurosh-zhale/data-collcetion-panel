@@ -1,0 +1,36 @@
+<div class="flex flex-col h-min">
+  <div
+    #select
+    class="flex justify-between input select cursor-pointer"
+    [ngClass]="selected ? 'select-focus' : 'visible'"
+    (click)="onFocus()"
+  >
+    <span class="place-holder text-grey text-md">
+      {{ selectedValue ? selectedValue : placeHolder }}
+    </span>
+    <span class="arrow" [ngClass]="selected ? 'visible' : 'rotate-180'"
+      ><img
+        src="../../../../assets/images/icons/up-arrow-svgrepo-com.svg"
+        alt="arrow"
+        width="12"
+    /></span>
+  </div>
+  <div
+    class="min-w-[150px] max-h-[180px] overflow-y-scroll flex flex-col bg-white rounded-xl p-3 z-10 fixed mt-12"
+    [ngClass]="
+      selected ? 'visible border-[2px] border-gray-100' : 'invisible opacity-0'
+    "
+    *ngIf="selected"
+  >
+    <div
+      class="text-dark text-md w-full h-full hover:bg-gray-100 border-gray-600 cursor-pointer transition-all min-h-[45px] flex"
+      [ngClass]="selectedValue === data ? 'bg-gray-100' : 'visible'"
+      *ngFor="let data of dataList"
+      (click)="onSelect(data)"
+    >
+      <span class="text-dark text-md self-center ml-3">
+        {{ data }}
+      </span>
+    </div>
+  </div>
+</div>
