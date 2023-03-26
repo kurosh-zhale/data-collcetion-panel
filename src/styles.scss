@@ -13,13 +13,14 @@
   --link-blue: #0ba2ec80;
   --link-purple: #340bec80;
   --shadow-light: #c9c9c9;
+  --error-red: #c74b4b;
 }
 
-body{
+body {
   overflow-y: hidden;
 }
 
-input {
+input select{
   border: none;
   appearance: none;
   outline: none;
@@ -49,6 +50,11 @@ input {
   color: transparent;
 }
 
+.input:invalid::placeholder {
+  border-color: var(--error-red);
+  color: var(--error-red);
+}
+
 .link {
   color: var(--link-blue);
   text-decoration: underline;
@@ -56,6 +62,11 @@ input {
 
 .link:visited {
   color: var(--link-purple);
+}
+
+.error {
+  color: var(--error-red);
+  transition: all 250ms ease-out;
 }
 
 .form-submit-btn {
