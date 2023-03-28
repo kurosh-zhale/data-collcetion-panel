@@ -25,21 +25,25 @@ export class LoginComponent implements OnInit {
 
   private addValidators() {
     this.login_form.get('username')?.addValidators([Validators.required]);
-    this.login_form.get('password')?.addValidators([Validators.required]);
+    this.login_form
+      .get('password')
+      ?.addValidators([Validators.required, Validators.minLength(10)]);
     this.login_form.get('username')?.updateValueAndValidity();
     this.login_form.get('password')?.updateValueAndValidity();
   }
 
+  private login(info: any) {
+    this.authServ.login(info).subscribe((data) => {});
+  }
+
   public submit() {
     this.addValidators();
-    if (this.login_form.get('username')?.valid) {
+    if (
+      this.login_form.get('username')?.valid &&
+      this.login_form.get('password')?.valid
+    ) {
       this.login(this.login_form.value);
     }
   }
 
-  private login(info: any) {
-    this.authServ.PostLogin(info).subscribe((data)=>{
-      
-    })
-  }
 }
