@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RegisterComponent } from './register.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -12,6 +13,7 @@ describe('RegisterComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [RegisterComponent],
       schemas: [NO_ERRORS_SCHEMA],
+      imports:[HttpClientTestingModule],
       providers: [AuthenticationService],
     }).compileComponents();
 
