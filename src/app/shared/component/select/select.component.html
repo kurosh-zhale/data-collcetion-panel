@@ -5,7 +5,10 @@
     [ngClass]="selected ? 'select-focus' : 'visible'"
     (click)="onFocus()"
   >
-    <span class="place-holder text-grey text-md">
+    <span
+      class="place-holder text-md"
+      [ngClass]="selectedValue ? 'text-dark' : 'text-grey'"
+    >
       {{ selectedValue ? selectedValue : placeHolder }}
     </span>
     <span class="arrow" [ngClass]="selected ? 'visible' : 'rotate-180'"
@@ -16,9 +19,9 @@
     /></span>
   </div>
   <div
-    class="min-w-[150px] max-h-[180px] overflow-y-scroll flex flex-col bg-white rounded-xl p-3 z-10 fixed mt-12"
+    class="min-w-[150px] max-h-[163px] overflow-y-scroll flex flex-col bg-white rounded-xl p-3 z-10 fixed transition-all"
     [ngClass]="
-      selected ? 'visible border-[2px] border-gray-100' : 'invisible opacity-0'
+      selected ? 'border-[2px] border-gray-100' : 'invisible opacity-0'
     "
     *ngIf="selected"
   >
