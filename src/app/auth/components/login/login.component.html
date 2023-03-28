@@ -10,11 +10,11 @@
         type="text"
         formControlName="username"
         class="input w-full"
-        placeholder="username"
+        placeholder="username or email"
       />
       <div class="error ml-4" *ngIf="login_form.invalid">
         <p *ngIf="login_form.get('username')?.hasError('required')">
-          please enter your username
+          please enter your username or email
         </p>
       </div>
     </fieldset>
