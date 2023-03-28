@@ -9,7 +9,7 @@
   --grey: #00000099;
   --orange: #cf834a;
   --lime-light: #d5faa7;
-  --lime-dark: #8cff00;
+  --lime-dark: #b8ff60;
   --link-blue: #0ba2ec80;
   --link-purple: #340bec80;
   --shadow-light: #c9c9c9;
@@ -37,7 +37,7 @@ input select{
 }
 
 .input:focus {
-  border: 1px solid var(--dark);
+  border: .5px solid var(--dark);
   box-shadow: 0px 0px 5px var(--shadow-light);
 }
 
