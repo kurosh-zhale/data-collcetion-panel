@@ -14,12 +14,22 @@ export class ForgotPasswordComponent implements OnInit {
     Validators.email,
   ]);
 
-  constructor(private authServ: AuthenticationService,private router:Router) {}
+  constructor(
+    private authServ: AuthenticationService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
-  public changeForm(form:string):void{
-    this.router.navigate([`../${form}`])
+  public changeForm(form: string): void {
+    this.router.navigate([`../${form}`]);
   }
 
+  public sendEmail() {
+    this.authServ
+      .forgot_password_email({
+        email: this.forgot_password_form.value,
+      })
+      .subscribe((data) => console.log(data));
+  }
 }
