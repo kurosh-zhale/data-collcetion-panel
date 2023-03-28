@@ -2,7 +2,8 @@
   <span class="text-xl text-grey self-center">Create an account</span>
   <form
     [formGroup]="registeration_form"
-    class="grid grid-col-6 grid-row-6 gap-x-2 gap-y-4"
+    class="grid grid-col-6 grid-row-6 gap-x-2 gap-y-4 h-1/2"
+    (submit)="register()"
   >
     <input
       type="text"
@@ -28,11 +29,18 @@
       class="input col-span-6"
       placeholder="confirm password"
     />
-    <input type="tel" class="input col-span-3" placeholder="phone" />
+    <input
+      type="tel"
+      class="input col-span-3"
+      placeholder="phone"
+      formControlName="phone"
+    />
     <app-select
-      [data-list]="['Male','Female','Other']"
+      [data-list]="['Male', 'Female', 'Other']"
       place-holder="gender"
       class="col-span-3"
+      role="button"
+      (onSelect)="registeration_form.get('gender')?.setValue($event)"
     ></app-select>
     <button
       type="submit"
