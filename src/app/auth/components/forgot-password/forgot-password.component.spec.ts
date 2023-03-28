@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ForgotPasswordComponent } from './forgot-password.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;
@@ -11,8 +12,9 @@ describe('ForgotPasswordComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ForgotPasswordComponent],
-      schemas:[NO_ERRORS_SCHEMA],
-      providers:[AuthenticationService]
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [AuthenticationService],
+      imports: [HttpClientTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ForgotPasswordComponent);
