@@ -1,0 +1,15 @@
+<div class="body w-[100vw] h-[100vh] flex flex-col justify-center align-middle">
+  <div class="flex w-[100vw] px-10 h-max justify-evenly mt-10 mb-auto">
+    <div class="mr-auto flex justify-between">
+      <h1 class="text-light cursor-pointer text-3xl">Molevision</h1>
+      <span class="text-light cursor-pointer mx-10 self-center">Home</span>
+      <span class="text-light cursor-pointer self-center">Products</span>
+    </div>
+    <span class="text-light cursor-pointer self-center" [routerLink]="'login'">login</span>
+  </div>
+  <div class="w-full h-5/6">
+    <div class="card-light w-[721px] h-[466px] mx-auto mt-5">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

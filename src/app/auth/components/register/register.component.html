@@ -1,0 +1,54 @@
+<div class="flex flex-col w-full h-full justify-around align-middle">
+  <span class="text-xl text-grey self-center">Create an account</span>
+  <form
+    [formGroup]="registeration_form"
+    class="grid grid-col-6 grid-row-6 gap-x-2 gap-y-4"
+  >
+    <input
+      type="text"
+      formControlName="username"
+      class="input col-span-3 row-start-1"
+      placeholder="username"
+    />
+    <input
+      type="text"
+      formControlName="email"
+      class="input col-span-3 row-start-1"
+      placeholder="email"
+    />
+    <input
+      type="password"
+      formControlName="password"
+      class="input col-span-6"
+      placeholder="password"
+    />
+    <input
+      type="password"
+      formControlName="confirm_password"
+      class="input col-span-6"
+      placeholder="confirm password"
+    />
+    <input type="tel" class="input col-span-3" placeholder="phone" />
+    <app-select
+      [data-list]="['Male','Female','Other']"
+      place-holder="gender"
+      class="col-span-3"
+    ></app-select>
+    <button
+      type="submit"
+      class="form-submit-btn col-start-5 col-end-7 row-start-5"
+    >
+      register
+    </button>
+    <button
+      type="reset"
+      class="form-reset-btn col-start-1 col-end-3 row-start-5"
+    >
+      cancel
+    </button>
+  </form>
+  <span class="text-md text-dark self-center mr-2"
+    >Already have an account?
+    <a class="link" [routerLink]="'../login'">Sign in</a>to get started</span
+  >
+</div>
