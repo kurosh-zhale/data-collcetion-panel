@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   public login_form = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
+    remember_me: new FormControl(false),
   });
 
   form_is_invalid = false;
@@ -32,8 +33,8 @@ export class LoginComponent implements OnInit {
     this.login_form.get('password')?.updateValueAndValidity();
   }
 
-  private login(info: any) {
-    this.authServ.login(info).subscribe((data) => {});
+  private login() {
+    this.authServ.login(this.login_form.value).subscribe();
   }
 
   public submit() {
@@ -42,8 +43,7 @@ export class LoginComponent implements OnInit {
       this.login_form.get('username')?.valid &&
       this.login_form.get('password')?.valid
     ) {
-      this.login(this.login_form.value);
+      this.login();
     }
   }
-
 }

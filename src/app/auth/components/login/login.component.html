@@ -1,5 +1,7 @@
 <div class="flex flex-col w-full h-full align-middle justify-around p-10">
-  <span class="text-grey self-center mx-auto text-xl">Sign in</span>
+  <span class="text-grey self-center mx-auto text-xl font-semibold"
+    >Sign in</span
+  >
   <form
     class="grid grid-cols-6 grid-rows-10 gap-y-4 gap-x-3 mt-10"
     [formGroup]="login_form"
@@ -25,7 +27,7 @@
         class="input w-full"
         placeholder="password"
       />
-      
+
       <div class="error ml-4" *ngIf="login_form.invalid">
         <p *ngIf="login_form.get('password')?.hasError('required')">
           please enter your password
@@ -40,6 +42,13 @@
       [routerLink]="'../forgot-password'"
       >Forgot password</a
     >
+    <fieldset class="col-start-5 col-end-7">
+      <app-check-box
+        [description]="'Remember me'"
+        class="text-grey"
+        (onClick)="login_form.get('remember_me')?.setValue($event)"
+      ></app-check-box>
+    </fieldset>
     <button
       type="reset"
       class="form-reset-btn col-start-1 col-end-3 row-start-auto"

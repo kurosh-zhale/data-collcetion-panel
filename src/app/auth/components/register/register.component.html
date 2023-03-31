@@ -1,62 +1,161 @@
 <div class="flex flex-col w-full h-full justify-around align-middle">
-  <span class="text-xl text-grey self-center">Create an account</span>
+  <span class="text-xl text-grey self-center font-semibold"
+    >Create an account</span
+  >
   <form
     [formGroup]="registeration_form"
-    class="grid grid-col-6 grid-row-6 gap-x-2 gap-y-4 h-1/2"
-    (submit)="register()"
+    class="grid grid-cols-8 md:grid-rows-7 sm:grid-rows-10 gap-x-2 gap-y-4 h-min mt-5"
+    (submit)="submitform()"
   >
-    <input
-      type="text"
-      formControlName="username"
-      class="input col-span-3 row-start-1"
-      placeholder="username"
-    />
-    <input
-      type="text"
-      formControlName="email"
-      class="input col-span-3 row-start-1"
-      placeholder="email"
-    />
-    <input
-      type="password"
-      formControlName="password"
-      class="input col-span-6"
-      placeholder="password"
-    />
-    <input
-      type="password"
-      formControlName="confirm_password"
-      class="input col-span-6"
-      placeholder="confirm password"
-    />
-    <input
-      type="tel"
-      class="input col-span-3"
-      placeholder="phone"
-      formControlName="phone"
-    />
+    <fieldset class="md:col-span-4 sm:col-span-8 row-start-auto">
+      <input
+        type="text"
+        formControlName="first_name"
+        class="input w-full"
+        placeholder="first name*"
+        (blur)="addValidators('first_name')"
+      />
+      <span
+        class="text-error ml-5"
+        *ngIf="registeration_form.get('first_name')?.hasError('required')"
+        >please enter your first name</span
+      >
+    </fieldset>
+    <fieldset class="md:col-span-4 sm:col-span-8 row-start-auto">
+      <input
+        type="text"
+        formControlName="last_name"
+        class="input w-full"
+        placeholder="last name*"
+        (blur)="addValidators('last_name')"
+      />
+      <span
+        class="text-error ml-5"
+        *ngIf="registeration_form.get('last_name')?.hasError('required')"
+        >please enter your last name</span
+      >
+    </fieldset>
+    <fieldset class="md:col-span-4 sm:col-span-8 row-start-auto">
+      <input
+        type="text"
+        formControlName="username"
+        class="input w-full"
+        placeholder="username*"
+        (blur)="addValidators('username')"
+      />
+      <span
+        class="text-error ml-5"
+        *ngIf="registeration_form.get('username')?.hasError('required')"
+      >
+        please enter your username
+      </span>
+    </fieldset>
+
+    <fieldset class="md:col-span-4 sm:col-span-8 row-start-auto">
+      <input
+        type="text"
+        formControlName="email"
+        class="input w-full"
+        placeholder="email*"
+        (blur)="addValidators('email')"
+      />
+      <span
+        class="text-error ml-5"
+        *ngIf="registeration_form.get('email')?.hasError('required')"
+      >
+        please a valid email
+      </span>
+    </fieldset>
+    <fieldset class="col-span-8">
+      <input
+        type="password"
+        formControlName="password"
+        class="input w-full"
+        placeholder="password*"
+        (blur)="addValidators('password')"
+      />
+      <span
+        class="text-error ml-5"
+        *ngIf="registeration_form.get('password')?.hasError('required')"
+      >
+        please enter your password
+      </span>
+      <span
+        class="text-error ml-5"
+        *ngIf="registeration_form.get('password')?.hasError('minLength')"
+      >
+        password is too short
+      </span>
+    </fieldset>
+    <fieldset class="col-span-8">
+      <input
+        type="password"
+        formControlName="confirm_password"
+        class="input w-full"
+        placeholder="confirm password*"
+        (blur)="addValidators('confirm_password')"
+      />
+      <span
+        class="text-error ml-5"
+        *ngIf="registeration_form.get('confirm_password')?.hasError('required')"
+      >
+        please confirm your password
+      </span>
+      <span
+        class="text-error ml-5"
+        *ngIf="
+          registeration_form.get('confirm_password')?.hasError('Confirmation')
+        "
+      >
+        password does <b>not</b> match
+      </span>
+    </fieldset>
+    <fieldset class="md:col-span-4 sm:col-span-8">
+      <app-select
+        [data-list]="organizations"
+        place-holder="organization*"
+        role="button"
+        (onSelect)="registeration_form.get('organization')?.setValue($event)"
+      ></app-select>
+      <span
+        class="text-error"
+        *ngIf="registeration_form.get('organization')?.hasError('required')"
+      >
+        please enter your organization
+      </span>
+    </fieldset>
     <app-select
-      [data-list]="['Male', 'Female', 'Other']"
+      [data-list]="[
+        { name: 'Male', value: 'Male' },
+        { name: 'Femail', value: 'Femail' },
+        { name: 'Diverse', value: 'Diverse' }
+      ]"
       place-holder="gender"
-      class="col-span-3"
+      class="md:col-span-2 sm:col-span-4"
       role="button"
       (onSelect)="registeration_form.get('gender')?.setValue($event)"
     ></app-select>
+    <input
+      type="tel"
+      class="input md:col-span-2 sm:col-span-4"
+      placeholder="phone"
+      formControlName="phone"
+    />
     <button
       type="submit"
-      class="form-submit-btn col-start-5 col-end-7 row-start-5"
+      class="form-submit-btn col-start-7 col-end-9 row-start-7 sm:row-start-7"
     >
       register
     </button>
     <button
       type="reset"
-      class="form-reset-btn col-start-1 col-end-3 row-start-5"
+      class="form-reset-btn col-start-1 col-end-3 row-start-7 sm:row-start-13"
     >
       cancel
     </button>
   </form>
   <span class="text-md text-dark self-center mr-2"
     >Already have an account?
-    <a class="link" [routerLink]="'../login'">Sign in</a>to get started</span
-  >
+    <a class="link" [routerLink]="'../login'">Sign in</a>to get started
+  </span>
 </div>
