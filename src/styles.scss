@@ -20,7 +20,7 @@ body {
   overflow-y: hidden;
 }
 
-input select{
+input select {
   border: none;
   appearance: none;
   outline: none;
@@ -37,7 +37,7 @@ input select{
 }
 
 .input:focus {
-  border: .5px solid var(--dark);
+  border: 0.5px solid var(--dark);
   box-shadow: 0px 0px 5px var(--shadow-light);
 }
 
@@ -114,6 +114,10 @@ input select{
 
 .text-grey {
   color: var(--grey);
+}
+
+.text-error {
+  color: var(--error-red);
 }
 
 .bg-light {
