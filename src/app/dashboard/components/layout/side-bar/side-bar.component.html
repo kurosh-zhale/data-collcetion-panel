@@ -1,0 +1,112 @@
+<div
+  class="w-[50px] transition-all bg-blue-300 h-full pt-3"
+  [ngClass]="extended ? 'w-[160px]' : 'visible'"
+>
+  <div class="h-full pb-5">
+    <div class="flex flex-col justify-evenly gap-5 h-full px-3">
+      <img
+        src="../../../../assets/images/icons/menu.svg"
+        alt="menu"
+        class="cursor-pointer mb-3"
+        (click)="extend()"
+        width="28"
+      />
+      <div
+        class="cursor-pointer flex justify-start gap-5 h-[40px]"
+        [ngClass]="
+          extended ? 'hover:bg-blue-200 h-[40px] rounded-md' : 'visible'
+        "
+        (click)="navigate('home')"
+      >
+        <img
+          src="../../../../assets/images/icons/house-fill-svgrepo-com.svg"
+          alt="home"
+          width="28"
+        />
+        <span *ngIf="extended" class="text-dark self-center font-semibold"
+          >Home</span
+        >
+      </div>
+      <div
+        class="cursor-pointer flex justify-start gap-5 mt-auto"
+        [ngClass]="
+          extended ? 'hover:bg-blue-200 h-[40px] rounded-md' : 'visible'
+        "
+        (click)="navigate('projects')"
+      >
+        <img
+          src="../../../../assets/images/icons/dashboard-svgrepo-com.svg"
+          alt="projects"
+          width="28"
+        />
+        <span *ngIf="extended" class="text-dark font-semibold self-center"
+          >Projects</span
+        >
+      </div>
+      <div
+        class="cursor-pointer flex justify-start gap-5 mt-auto"
+        [ngClass]="
+          extended ? 'hover:bg-blue-200 h-[40px] rounded-md' : 'visible'
+        "
+        (click)="navigate('logs')"
+      >
+        <img
+          src="../../../../assets/images/icons/book-1-svgrepo-com.svg"
+          alt="logs"
+          width="28"
+        />
+        <span *ngIf="extended" class="text-dark font-semibold self-center"
+          >Logs</span
+        >
+      </div>
+      <div
+        class="cursor-pointer flex justify-start gap-5 mt-auto"
+        [ngClass]="
+          extended ? 'hover:bg-blue-200 h-[40px] rounded-md' : 'visible'
+        "
+        (click)="navigate('search')"
+      >
+        <img
+          src="../../../../assets/images/icons/search-magnifying-glass-svgrepo-com.svg"
+          alt="search"
+          width="28"
+        />
+        <span *ngIf="extended" class="text-dark font-semibold self-center"
+          >Search</span
+        >
+      </div>
+      <div
+        class="cursor-pointer flex justify-start gap-5 mt-auto"
+        [ngClass]="
+          extended ? 'hover:bg-blue-200 h-[40px] rounded-md' : 'visible'
+        "
+        (click)="navigate('pins')"
+      >
+        <img
+          src="../../../../assets/images/icons/like-svgrepo-com.svg"
+          alt="pins"
+          width="28"
+        />
+        <span *ngIf="extended" class="text-dark font-semibold self-center"
+          >Pins</span
+        >
+      </div>
+      <div
+        class="cursor-pointer flex justify-start gap-5 mt-auto"
+        [ngClass]="
+          extended ? 'hover:bg-blue-200 h-[40px] rounded-md' : 'visible'
+        "
+        (click)="navigate('home')"
+      >
+        <img
+          src="../../../../assets/images/icons/settings-ui-svgrepo-com.svg"
+          alt="setting"
+          width="28"
+        />
+        <span *ngIf="extended" class="text-dark font-semibold self-center"
+          >Setting</span
+        >
+      </div>
+    </div>
+  </div>
+</div>

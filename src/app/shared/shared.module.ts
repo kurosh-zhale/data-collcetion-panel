@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SelectComponent } from './component/select/select.component';
+import { SelectComponent } from './components/select/select.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CheckBoxComponent } from './components/check-box/check-box.component';
 
 @NgModule({
-  declarations: [SelectComponent],
+  declarations: [SelectComponent, CheckBoxComponent],
   imports: [CommonModule, ReactiveFormsModule],
-  exports: [SelectComponent],
+  exports: [SelectComponent,CheckBoxComponent],
 })
 export class SharedModule {}

@@ -1,0 +1,13 @@
+<div class="flex gap-4 justify-start">
+  <div class="checkbox" (click)="emitValue()">
+    <img
+      src="../../../../assets/images/icons/check-svgrepo-com.svg"
+      alt=""
+      class="transition-all"
+      [ngClass]="checked ? 'opacity-100' : 'opacity-0'"
+    />
+  </div>
+  <span>
+    {{ desc }}
+  </span>
+</div>

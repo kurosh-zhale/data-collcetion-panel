@@ -9,7 +9,7 @@
       class="place-holder text-md"
       [ngClass]="selectedValue ? 'text-dark' : 'text-grey'"
     >
-      {{ selectedValue ? selectedValue : placeHolder }}
+      {{ selectedValue ? selectedName : placeHolder }}
     </span>
     <span class="arrow" [ngClass]="selected ? 'visible' : 'rotate-180'"
       ><img
@@ -19,7 +19,7 @@
     /></span>
   </div>
   <div
-    class="min-w-[150px] max-h-[163px] overflow-y-scroll flex flex-col bg-white rounded-xl p-3 z-10 fixed transition-all"
+    class="min-w-[150px] max-h-[163px] w-max overflow-y-scroll flex flex-col bg-white rounded-xl p-3 z-10 fixed transition-all"
     [ngClass]="
       selected ? 'border-[2px] border-gray-100' : 'invisible opacity-0'
     "
@@ -27,12 +27,12 @@
   >
     <div
       class="text-dark text-md w-full h-full hover:bg-gray-100 border-gray-600 cursor-pointer transition-all min-h-[45px] flex"
-      [ngClass]="selectedValue === data ? 'bg-gray-100' : 'visible'"
       *ngFor="let data of dataList"
+      [ngClass]="selectedValue === data.value ? 'bg-gray-100' : 'visible'"
       (click)="onSelect(data)"
     >
       <span class="text-dark text-md self-center ml-3">
-        {{ data }}
+        {{ data.name }}
       </span>
     </div>
   </div>
