@@ -26,10 +26,8 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   public sendEmail() {
-    this.authServ
-      .forgot_password_email({
-        email: this.forgot_password_form.value,
-      })
-      .subscribe((data) => console.log(data));
+    this.authServ.forgot_password_email({
+      email: this.forgot_password_form.value,
+    });
   }
 }
