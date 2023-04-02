@@ -15,29 +15,26 @@
     <button
       [ngClass]="currentPage === pages - 4 ? 'selected-page-btn' : 'page-btn'"
       (click)="set_page(pages - 4)"
+      *ngIf="pages - 3 > 0"
     >
       {{ pages - 3 }}
     </button>
     <button
       [ngClass]="currentPage === pages - 3 ? 'selected-page-btn' : 'page-btn'"
-      (click)="set_page(pages - 3)"
-    >
-      {{ pages - 2 }}
-    </button>
-    <button
-      [ngClass]="currentPage === pages - 2 ? 'selected-page-btn' : 'page-btn'"
       (click)="set_page(pages - 2)"
+      *ngIf="pages - 1 > 0"
     >
       {{ pages - 1 }}
     </button>
     <button
-      [ngClass]="currentPage === pages - 1 ? 'selected-page-btn' : 'page-btn'"
+      [ngClass]="currentPage === pages - 2 ? 'selected-page-btn' : 'page-btn'"
       (click)="set_page(pages - 1)"
+      *ngIf="pages"
     >
       {{ pages }}
     </button>
     <button
-      [ngClass]="currentPage === pages ? 'selected-page-btn' : 'page-btn'"
+      [ngClass]="currentPage === pages - 1 ? 'selected-page-btn' : 'page-btn'"
       (click)="set_page(pages)"
     >
       {{ pages + 1 }}
