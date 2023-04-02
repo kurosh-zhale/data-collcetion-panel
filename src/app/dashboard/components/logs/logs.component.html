@@ -1,1 +1,42 @@
-<p>logs works!</p>
+<div class="flex flex-col w-full h-full gap-5">
+  <div
+    class="flex w-full h-12 shadow-md rounded-md bg-slate-100 justify-between items-center px-3 py-2 sticky top-1"
+  >
+    <app-pagination></app-pagination>
+    <div class="flex justify-between w-[100px] h-full items-center">
+      <button class="rounded-sm shadow-md w-8 h-8 bg-white border-gray-300 p-1">
+        <img
+          src="../../../../assets/images/icons/settings-ui-svgrepo-com.svg"
+          alt="settings"
+        />
+      </button>
+      <button class="rounded-sm shadow-md w-8 h-8 bg-lime-300 p-1">
+        <img
+          src="../../../../assets/images/icons/filter-svgrepo-com.svg"
+          alt="filter"
+        />
+      </button>
+    </div>
+  </div>
+  <ng-container *ngIf="mode === 'grid'">
+    <div class="grid grid-cols-3 grid-rows-2 gap-4 h-full w-full">
+        <div
+          class="card-dark col-span-1 row-span-1 flex flex-col !p-0 overflow-hidden"
+        >
+          <img
+            src="../../../../assets/images/abstract-data.jpg"
+            alt="img"
+            class="w-full h-1/2"
+          />
+          <div class="p-3 min-h-fit">
+              <h1 class="text-2xl font-semibold text-light">Data name</h1>
+            <p class="text-sm my-2 text-light">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis
+              placeat obcaecati nemo...
+            </p>
+            <p class="text-right text-light">yyyy/mmmm/dddd</p>
+          </div>
+        </div>
+    </div>
+  </ng-container>
+</div>

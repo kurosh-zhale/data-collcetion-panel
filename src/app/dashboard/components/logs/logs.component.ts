@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogsComponent implements OnInit {
 
+  mode:'grid'|'table' = 'grid';
+
   constructor() { }
 
   ngOnInit(): void {
