@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { SelectComponent } from './components/select/select.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CheckBoxComponent } from './components/check-box/check-box.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
-  declarations: [SelectComponent, CheckBoxComponent],
+  declarations: [SelectComponent, CheckBoxComponent, PaginationComponent],
   imports: [CommonModule, ReactiveFormsModule],
-  exports: [SelectComponent,CheckBoxComponent],
+  exports: [SelectComponent,CheckBoxComponent,PaginationComponent],
 })
 export class SharedModule {}

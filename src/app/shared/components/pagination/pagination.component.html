@@ -1,0 +1,91 @@
+<div class="flex justify-evenly gap-3">
+  <button class="p-2 nav-btn" (click)="first_page()">
+    <img
+      src="../../../../assets/images/icons/navigation-before-first-page-firstpage-left-previous-icon-svgrepo-com.svg"
+      alt="first_page"
+    />
+  </button>
+  <button class="p-2 nav-btn" (click)="previous_page()">
+    <img
+      src="../../../../assets/images/icons/navigation-arrow-chevron-direction-forward-move-left-icon-svgrepo-com.svg"
+      alt=""
+    />
+  </button>
+  <ng-container *ngIf="pages - currentPage < 5">
+    <button
+      [ngClass]="currentPage === pages - 4 ? 'selected-page-btn' : 'page-btn'"
+      (click)="set_page(pages - 4)"
+    >
+      {{ pages - 3 }}
+    </button>
+    <button
+      [ngClass]="currentPage === pages - 3 ? 'selected-page-btn' : 'page-btn'"
+      (click)="set_page(pages - 3)"
+    >
+      {{ pages - 2 }}
+    </button>
+    <button
+      [ngClass]="currentPage === pages - 2 ? 'selected-page-btn' : 'page-btn'"
+      (click)="set_page(pages - 2)"
+    >
+      {{ pages - 1 }}
+    </button>
+    <button
+      [ngClass]="currentPage === pages - 1 ? 'selected-page-btn' : 'page-btn'"
+      (click)="set_page(pages - 1)"
+    >
+      {{ pages }}
+    </button>
+    <button
+      [ngClass]="currentPage === pages ? 'selected-page-btn' : 'page-btn'"
+      (click)="set_page(pages)"
+    >
+      {{ pages + 1 }}
+    </button>
+  </ng-container>
+  <ng-container *ngIf="pages - currentPage >= 5">
+    <ng-container *ngIf="currentPage === 0">
+      <button class="selected-page-btn">1</button>
+      <button class="page-btn" (click)="set_page(1)">2</button>
+      <button class="page-btn" (click)="set_page(2)">3</button>
+      <span>...</span>
+      <button class="page-btn" (click)="set_page(pages - 1)">
+        {{ pages }}
+      </button>
+      <button class="page-btn" (click)="set_page(pages)">
+        {{ pages + 1 }}
+      </button>
+    </ng-container>
+    <ng-container *ngIf="currentPage !== 0">
+      <button class="page-btn" (click)="set_page(currentPage - 1)">
+        {{ currentPage }}
+      </button>
+      <button class="selected-page-btn">{{ currentPage + 1 }}</button>
+      <button class="page-btn" (click)="set_page(currentPage + 1)">
+        {{ currentPage + 2 }}
+      </button>
+      <span>...</span>
+      <button class="page-btn" (click)="set_page(pages - 1)">
+        {{ pages }}
+      </button>
+      <button class="page-btn" (click)="set_page(pages)">
+        {{ pages + 1 }}
+      </button>
+    </ng-container>
+  </ng-container>
+
+  <button class="p-2 nav-btn" (click)="next_page()">
+    <img
+      src="../../../../assets/images/icons/navigation-arrow-chevron-direction-forward-move-left-icon-svgrepo-com.svg"
+      alt=""
+      class="rotate-180"
+    />
+  </button>
+  <button class="p-2 nav-btn" (click)="last_page()">
+    <img
+      src="../../../../assets/images/icons/navigation-before-first-page-firstpage-left-previous-icon-svgrepo-com.svg"
+      alt=""
+      class="rotate-180"
+    />
+  </button>
+</div>

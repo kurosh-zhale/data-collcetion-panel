@@ -1,0 +1,30 @@
+@mixin page_button($color) {
+  width: 30px;
+  height: 30px;
+  color: var(--dark);
+  background-color: $color;
+  border-radius: 3px;
+  box-shadow: 0px 2px 10px var(--shadow-light);
+  transition: all 150ms ease-out;
+}
+
+.nav-btn {
+  @include page_button(var(--shadow-light));
+}
+
+.nav-btn:hover {
+  filter: saturate(170%);
+}
+
+.page-btn {
+  @include page_button(var(--orange));
+  filter: saturate(130%);
+}
+
+.page-btn:hover {
+  filter: saturate(170%);
+}
+
+.selected-page-btn {
+  @include page_button(var(--lime-dark));
+}
