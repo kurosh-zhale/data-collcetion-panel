@@ -14,6 +14,6 @@ export class SideBarComponent implements OnInit {
   navigate(route: string) {
     if (route === 'dashboard') {
       this.router.navigate([route]);
-    } else this.router.navigate(['../settings' + route]);
+    } else this.router.navigate(['../settings/' + route]);
   }
 }
