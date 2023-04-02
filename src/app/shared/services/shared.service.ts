@@ -3,14 +3,10 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 
 @Injectable()
-export class DashboardService {
+export class SharedService {
   constructor(private http: HttpClient) {}
 
-  get_dataitems() {
-    return this.http.get(environment.baseUrl + 'dataitems');
-  }
-
-  get_projects() {
-    return this.http.get(environment.baseUrl + 'projects');
+  get_user(id: string) {
+    return this.http.get(environment.baseUrl + 'user/' + id);
   }
 }
