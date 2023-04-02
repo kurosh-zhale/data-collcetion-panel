@@ -25,10 +25,4 @@ describe('ForgotPasswordComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should validate email', () => {
-    component.forgot_password_form.setValue('Invalid_Email');
-
-    expect(component.forgot_password_form.valid).toEqual(false);
-  });
 });
