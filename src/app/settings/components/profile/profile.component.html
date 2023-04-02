@@ -1,1 +1,85 @@
-<p>profile works!</p>
+<div
+  class="card-dark w-1/2 h-[300px] flex flex-col mx-auto transition-all"
+  [ngClass]="!static ? 'h-[500px] w-2/3' : 'visible'"
+>
+  <div class="w-full h-2/3 flex justify-around">
+    <div class="w-1/3 flex p-5">
+      <div
+        class="rounded-full h-40 w-40 bg-white flex items-center justify-center"
+      >
+        <img
+          src="../../../../assets/images/icons/account-avatar-person-svgrepo-com.svg"
+          alt="avatar"
+          width="120"
+          class="relative bottom-4"
+        />
+      </div>
+    </div>
+    <div
+      class="grid grid-cols-2 grid-rows-3 w-full mt-5 gap-y-2"
+      [ngClass]="!static ? 'gap-5' : 'visible'"
+    >
+      <ng-container *ngIf="static">
+        <div class="col-span-1 row-span-1">
+          <span class="text-light text-2xl font-semibold">
+            kurosh
+          </span>
+          <span class="text-light text-2xl font-semibold">
+            zhale
+          </span>
+        </div>
+        <span class="text-light col-span-2 row-span-1"
+          ><span class="info">@kurosh</span></span
+        >
+        <span class="text-light col-span-2 row-span-1"
+          ><div class="info w-max pl-3">kjreem.imagine@gmail.com</div></span
+        >
+        <span class="text-light col-span-1 row-span-1"
+          ><p class="info w-max">yyyy/mmmm/dddd</p></span
+        >
+      </ng-container>
+      <ng-container *ngIf="!static">
+        <input
+          class="text-light col-span-1 row-span-1 text-xl !shadow-none input"
+          placeholder="first name"
+        />
+        <input
+          class="text-light col-span-1 row-span-1 text-xl !shadow-none input"
+          placeholder="last name"
+        />
+        <input
+          class="text-light col-span-1 row-span-1 text-xl !shadow-none input"
+          placeholder="username"
+        />
+        <input
+          class="text-light col-span-1 row-span-1 text-xl !shadow-none input"
+          placeholder="email"
+        />
+        <input
+          class="text-light col-span-1 row-span-1 text-xl !shadow-none input placeholder:text-grey"
+          placeholder="birthday"
+          type="date"
+        />
+        <input
+          class="text-light col-span-1 row-span-1 text-xl !shadow-none input"
+          placeholder="phone"
+          type="tel"
+        />
+        <input
+          class="text-light col-span-1 row-span-1 text-xl !shadow-none input"
+          placeholder="fax"
+          type="tel"
+        />
+      </ng-container>
+    </div>
+  </div>
+  <div class="flex w-full h-1/3 items-center">
+    <button
+      class="bg-blue-600 rounded-md text-light w-32 h-1/2 ml-auto mr-5 transition-all"
+      (click)="static = !static"
+      [ngClass]="!static ? 'form-submit-btn text-dark' : 'visible'"
+    >
+      change
+    </button>
+  </div>
+</div>
