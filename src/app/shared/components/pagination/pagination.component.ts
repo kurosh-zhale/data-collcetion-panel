@@ -30,11 +30,9 @@ export class PaginationComponent implements OnInit {
 
   previous_page() {
     if (this.currentPage !== 0) this.currentPage--;
-    console.log(this.currentPage);
   }
 
   set_page(page: number) {
     this.currentPage = page;
-    console.log(this.currentPage);
   }
 }
