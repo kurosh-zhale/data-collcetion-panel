@@ -9,9 +9,20 @@ import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { PinsComponent } from './components/pins/pins.component';
+import { SharedModule } from '../shared/shared.module';
+import { LogsComponent } from './components/logs/logs.component';
 
 @NgModule({
-  declarations: [LayoutComponent, SideBarComponent, ToolBarComponent, HomeComponent, SearchComponent, ProjectsComponent, PinsComponent],
-  imports: [CommonModule, DashboardRoutingModule],
+  declarations: [
+    LayoutComponent,
+    SideBarComponent,
+    ToolBarComponent,
+    HomeComponent,
+    SearchComponent,
+    ProjectsComponent,
+    PinsComponent,
+    LogsComponent
+  ],
+  imports: [CommonModule, DashboardRoutingModule, SharedModule],
 })
 export class DashboardModule {}
