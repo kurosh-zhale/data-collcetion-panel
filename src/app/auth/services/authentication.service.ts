@@ -30,6 +30,14 @@ export class AuthenticationService {
     });
   }
 
+  public setToken(token: string) {
+    localStorage.setItem('TOKEN', token);
+  }
+
+  public confirm_user(token:string) {
+    return this.http.get(environment.baseUrl+'confirm');
+  }
+
   public get_organizations() {
     return this.http.get(environment.baseUrl + 'providers');
   }

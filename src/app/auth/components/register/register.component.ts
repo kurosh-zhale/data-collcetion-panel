@@ -28,9 +28,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.get_organizations();
-    
   }
-  
 
   private get_organizations() {
     let subscribtion = this.authServ
@@ -51,21 +49,24 @@ export class RegisterComponent implements OnInit {
         this.organizations = data;
       });
 
-    // if (this.organizations) subscribtion.unsubscribe();
+    if (this.organizations) subscribtion.unsubscribe();
   }
 
-  private login() {
+  private login(token:string) {
     const loginInfo = {
       username: this.registeration_form.get('username')?.value,
       password: this.registeration_form.get('password')?.value,
     };
-    this.authServ.login(loginInfo);
+    this.authServ.login(loginInfo).subscribe(()=>this.authServ.setToken(token))
   }
 
   private register() {
+    const email = this.registeration_form.get('email')?.value?.trimEnd();
     this.authServ
-      .register(this.registeration_form.value)
-      .subscribe(() => this.login);
+      .register({ ...this.registeration_form.value, email: email })
+      .subscribe((data:any) => {
+        this.login(data);
+      });
   }
 
   addValidators(field: string) {
