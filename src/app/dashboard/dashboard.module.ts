@@ -11,6 +11,8 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { PinsComponent } from './components/pins/pins.component';
 import { SharedModule } from '../shared/shared.module';
 import { LogsComponent } from './components/logs/logs.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DashboardService } from './services/dashboard.service';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,14 @@ import { LogsComponent } from './components/logs/logs.component';
     SearchComponent,
     ProjectsComponent,
     PinsComponent,
-    LogsComponent
+    LogsComponent,
   ],
-  imports: [CommonModule, DashboardRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    SharedModule,
+    HttpClientModule,
+  ],
+  providers: [DashboardService],
 })
 export class DashboardModule {}
