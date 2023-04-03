@@ -8,7 +8,7 @@
     >
       <h1 class="text-xl text-light font-bold">{{ project.name }}</h1>
       <p class="text-light font-semibold my-3">
-        {{project.description}}
+        {{ project.description }}
       </p>
       <p class="text-light font-semibold">
         created at: {{ project.create_date }}
@@ -19,3 +19,13 @@
     </div>
   </div>
 </div>
+
+<button
+  class="bg-blue-300 flex justify-center items-center rounded-full absolute bottom-10 right-5 shadow-xl hover:bg-lime-300 transition-all"
+>
+  <img
+    src="../../../../assets/images/icons/add-plus-svgrepo-com.svg"
+    alt=""
+    width="80"
+  />
+</button>
