@@ -13,6 +13,7 @@ import { SharedModule } from '../shared/shared.module';
 import { LogsComponent } from './components/logs/logs.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardService } from './services/dashboard.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { DashboardService } from './services/dashboard.service';
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
+    ReactiveFormsModule,
     HttpClientModule,
   ],
   providers: [DashboardService],

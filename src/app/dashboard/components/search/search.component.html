@@ -1,1 +1,50 @@
-<p>search works!</p>
+<div class="w-full flex flex-col justify-center">
+  <input
+    type="text"
+    class="input w-1/2 self-center my-auto mx-auto"
+    placeholder="Search everything"
+    (keydown.enter)="searchEvent()"
+    [formControl]="search_form"
+    [ngClass]="searched ? 'self-start' : 'visible'"
+  />
+  <div class="flex flex-col w-[95vw]" *ngIf="searched">
+    <p
+      class="text-3xl text-dark font-bold transition"
+      [ngClass]="searched ? 'opacity-100' : 'opacity-0'"
+    >
+      Header
+    </p>
+    <div class="flex justify-evenly overflow-x-scroll h-min w-min p-10 gap-x-5">
+      <div
+        class="card-dark w-[300px] h-[300px] transition"
+        [ngClass]="searched ? 'opacity-100' : 'opacity-0'"
+      >
+        content
+      </div>
+      <div
+        class="card-dark w-[300px] h-[300px] transition"
+        [ngClass]="searched ? 'opacity-100' : 'opacity-0'"
+      >
+        content
+      </div>
+      <div
+        class="card-dark w-[300px] h-[300px] transition"
+        [ngClass]="searched ? 'opacity-100' : 'opacity-0'"
+      >
+        content
+      </div>
+      <div
+        class="card-dark w-[300px] h-[300px] transition"
+        [ngClass]="searched ? 'opacity-100' : 'opacity-0'"
+      >
+        content
+      </div>
+      <div
+        class="card-dark w-[300px] h-[300px]"
+        [ngClass]="searched ? 'opacity-100' : 'opacity-0'"
+      >
+        content
+      </div>
+    </div>
+  </div>
+</div>
