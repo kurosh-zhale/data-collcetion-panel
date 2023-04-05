@@ -7,6 +7,18 @@ import { Subject, Observable, map, BehaviorSubject } from 'rxjs';
 export class AuthenticationService {
   constructor(private http: HttpClient) {}
 
+  public get userToken(): string | null {
+    return localStorage.getItem('TOKEN');
+  }
+
+  public async set_token(token: string) {
+    localStorage.setItem('TOKEN', token);
+  }
+
+  public remove_token() {
+    localStorage.removeItem('TOKEN');
+  }
+
   public login(body: any) {
     return this.http.post(environment.baseUrl + 'login', {
       ...body,
@@ -30,12 +42,12 @@ export class AuthenticationService {
     });
   }
 
-  public setToken(token: string) {
-    localStorage.setItem('TOKEN', token);
+  public confirm_user(token: string) {
+    return this.http.get(environment.baseUrl + 'confirm/' + token);
   }
 
-  public confirm_user(token:string) {
-    return this.http.get(environment.baseUrl+'confirm');
+  public get_user_by_token(token: string | null) {
+    return this.http.get(environment.baseUrl + 'userlogin/' + token);
   }
 
   public get_organizations() {
