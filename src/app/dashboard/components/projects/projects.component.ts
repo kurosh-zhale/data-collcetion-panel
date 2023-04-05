@@ -11,10 +11,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 export class ProjectsComponent implements OnInit {
   projectsList: BehaviorSubject<any> = new BehaviorSubject<any>([]);
 
-  constructor(
-    private dashServ: DashboardService,
-    private sharedServ: SharedService
-  ) {}
+  constructor(private dashServ: DashboardService) {}
 
   ngOnInit(): void {
     this.get_projects();
