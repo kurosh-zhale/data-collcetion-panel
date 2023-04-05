@@ -16,12 +16,12 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path:'settings',
     loadChildren:()=>import('./settings/settings.module').then((m)=>m.SettingsModule),
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   }
 ];
 
