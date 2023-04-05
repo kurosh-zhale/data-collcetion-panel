@@ -47,15 +47,14 @@ export class LoginComponent implements OnInit {
   }
 
   private set_token(token: string) {
-    return this.authServ.set_token(token);
+    this.authServ.set_token(token).then(() => this.route_to_dashboard());
   }
 
   private login() {
     let subscription = this.authServ
       .login(this.login_form.value)
       .subscribe(({ token, message }: any) => {
-        if (message === 'Login Successful')
-          this.set_token(token).then(() => this.route_to_dashboard());
+        if (message === 'Login Successful') this.set_token(token);
       });
 
     this.subscriptions.push(subscription);
