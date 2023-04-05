@@ -14,7 +14,7 @@ export class DashboardService {
     return this.http.get(environment.baseUrl + 'projects');
   }
 
-  logout() {
+  async logout() {
     localStorage.removeItem('TOKEN');
   }
 }

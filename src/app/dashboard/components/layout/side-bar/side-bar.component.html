@@ -93,21 +93,39 @@
           >
         </div>
       </div>
-      <div
-        class="cursor-pointer flex justify-start gap-5"
-        [ngClass]="
-          extended ? 'hover:bg-blue-200 h-[40px] rounded-md' : 'visible'
-        "
-        (click)="navigate('settings')"
-      >
-        <img
-          src="../../../../assets/images/icons/settings-ui-svgrepo-com.svg"
-          alt="setting"
-          width="28"
-        />
-        <span *ngIf="extended" class="text-dark font-semibold self-center"
-          >Setting</span
+      <div class="flex flex-col items-center justify-between gap-y-5">
+        <div
+          class="cursor-pointer flex justify-start gap-5"
+          [ngClass]="
+            extended ? 'hover:bg-blue-200 h-[40px] rounded-md' : 'visible'
+          "
+          (click)="navigate('settings')"
         >
+          <img
+            src="../../../../assets/images/icons/settings-ui-svgrepo-com.svg"
+            alt="setting"
+            width="28"
+          />
+          <span *ngIf="extended" class="text-dark font-semibold self-center"
+            >Setting</span
+          >
+        </div>
+        <div
+          class="cursor-pointer flex justify-start gap-5 relative right-[3px]"
+          [ngClass]="
+            extended ? 'hover:bg-blue-200 h-[40px] rounded-md' : 'visible'
+          "
+          (click)="logout()"
+        >
+          <img
+            src="../../../../../assets/images/icons/logout-svgrepo-com.svg"
+            alt="setting"
+            width="28"
+          />
+          <span *ngIf="extended" class="text-dark font-semibold self-center"
+            >Logout</span
+          >
+        </div>
       </div>
     </div>
   </div>
