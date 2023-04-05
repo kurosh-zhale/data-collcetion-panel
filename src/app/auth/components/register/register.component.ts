@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PasswordConfirmation } from '../../utils/validators';
 import { AuthenticationService } from '../../services/authentication.service';
-import { BehaviorSubject, Observable, Subject, map } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription, map } from 'rxjs';
+import { Router } from '@angular/router';
+import { unsubscribe } from 'src/app/shared/utils/unsubscriber';
 
 @Component({
   selector: 'app-register',
@@ -24,10 +26,18 @@ export class RegisterComponent implements OnInit {
 
   organizations: any;
 
-  constructor(public authServ: AuthenticationService) {}
+  private subscriptions: Subscription[] = [];
+
+  constructor(public authServ: AuthenticationService, private router: Router) {}
 
   ngOnInit(): void {
     this.get_organizations();
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    unsubscribe(this.subscriptions);
   }
 
   private get_organizations() {
@@ -49,44 +59,67 @@ export class RegisterComponent implements OnInit {
         this.organizations = data;
       });
 
-    if (this.organizations) subscribtion.unsubscribe();
+    this.subscriptions.push(subscribtion);
   }
 
-  private login(token:string) {
+  private route_to_email_confirmation(token: string) {
+    this.router.navigate([`./e-conf/${token}`]);
+  }
+
+  private set_token(token: string) {
+    this.authServ
+      .set_token(token)
+      .then(() => this.route_to_email_confirmation(token));
+  }
+
+  private login() {
     const loginInfo = {
       username: this.registeration_form.get('username')?.value,
       password: this.registeration_form.get('password')?.value,
     };
-    this.authServ.login(loginInfo).subscribe(()=>this.authServ.setToken(token))
+    let subscription = this.authServ
+      .login(loginInfo)
+      .subscribe(({ token, message }: any) => {
+        if (message === 'Login Successful') this.set_token(token);
+      });
+
+    this.subscriptions.push(subscription);
   }
 
   private register() {
     const email = this.registeration_form.get('email')?.value?.trimEnd();
-    this.authServ
+    let subscribtion = this.authServ
       .register({ ...this.registeration_form.value, email: email })
-      .subscribe((data:any) => {
-        this.login(data);
-      });
+      .subscribe(() => this.login());
+
+    this.subscriptions.push(subscribtion);
   }
 
-  addValidators(field: string) {
-    if (field === 'password') {
-      this.registeration_form
-        .get(field)
-        ?.addValidators([Validators.required, Validators.minLength(10)]);
-    } else if (field === 'confirm_password') {
-      this.registeration_form
-        .get(field)
-        ?.addValidators([Validators.required, PasswordConfirmation()]);
-    } else {
-      this.registeration_form.get(field)?.addValidators([Validators.required]);
-    }
+  add_validators() {
     this.registeration_form
-      .get(field)
-      ?.updateValueAndValidity({ onlySelf: true });
+      .get('password')
+      ?.addValidators([Validators.required, Validators.minLength(10)]);
+    this.registeration_form
+      .get('confirm_password')
+      ?.addValidators([Validators.required, PasswordConfirmation()]);
+    this.registeration_form
+      .get('first_name')
+      ?.addValidators([Validators.required]);
+    this.registeration_form
+      .get('last_name')
+      ?.addValidators([Validators.required]);
+    this.registeration_form
+      .get('username')
+      ?.addValidators([Validators.required]);
+    this.registeration_form.get('email')?.addValidators([Validators.required]);
+    this.registeration_form
+      .get('organization')
+      ?.addValidators([Validators.required]);
+    this.registeration_form.updateValueAndValidity();
   }
 
   submitform() {
+    this.add_validators();
     if (this.registeration_form.valid) this.register();
   }
 }
