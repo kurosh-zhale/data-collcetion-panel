@@ -13,4 +13,8 @@ export class DashboardService {
   get_projects() {
     return this.http.get(environment.baseUrl + 'projects');
   }
+
+  logout() {
+    localStorage.removeItem('TOKEN');
+  }
 }
