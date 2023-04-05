@@ -95,31 +95,38 @@ export class RegisterComponent implements OnInit {
     this.subscriptions.push(subscribtion);
   }
 
-  add_validators() {
+  async add_validators() {
     this.registeration_form
       .get('password')
       ?.addValidators([Validators.required, Validators.minLength(10)]);
+    this.registeration_form.get('password')?.updateValueAndValidity();
     this.registeration_form
       .get('confirm_password')
       ?.addValidators([Validators.required, PasswordConfirmation()]);
+    this.registeration_form.get('confirm_password')?.updateValueAndValidity();
     this.registeration_form
       .get('first_name')
       ?.addValidators([Validators.required]);
+    this.registeration_form.get('first_name')?.updateValueAndValidity();
     this.registeration_form
       .get('last_name')
       ?.addValidators([Validators.required]);
+    this.registeration_form.get('last_name')?.updateValueAndValidity();
     this.registeration_form
       .get('username')
       ?.addValidators([Validators.required]);
+    this.registeration_form.get('username')?.updateValueAndValidity();
     this.registeration_form.get('email')?.addValidators([Validators.required]);
+    this.registeration_form.get('email')?.updateValueAndValidity();
     this.registeration_form
       .get('organization')
       ?.addValidators([Validators.required]);
-    this.registeration_form.updateValueAndValidity();
+    this.registeration_form.get('organization')?.updateValueAndValidity();
   }
 
   submitform() {
-    this.add_validators();
-    if (this.registeration_form.valid) this.register();
+    this.add_validators().then(() => {
+      if (this.registeration_form.valid) this.register();
+    });
   }
 }
