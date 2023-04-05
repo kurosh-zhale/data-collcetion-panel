@@ -1,4 +1,4 @@
-<div class="flex flex-col w-full h-full gap-5">
+<div class="flex flex-col w-full h-min gap-5">
   <div
     class="flex w-full h-12 shadow-md rounded-md bg-slate-100 justify-between items-center px-3 py-2 sticky top-0"
   >
@@ -19,7 +19,7 @@
     </div>
   </div>
   <ng-container *ngIf="mode === 'grid'">
-    <div class="grid grid-cols-3 grid-rows-2 gap-4 h-full w-full">
+    <div class="grid grid-cols-3 grid-rows-2 gap-4 h-min w-full">
       <div
         *ngFor="let data of dataList | async"
         class="card-dark col-span-1 row-span-1 flex flex-col !p-0 overflow-hidden"
