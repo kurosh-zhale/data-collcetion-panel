@@ -2,7 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
-
+import { unsubscribe } from 'src/app/shared/utils/unsubscriber';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,6 +18,8 @@ export class LoginComponent implements OnInit {
 
   form_is_invalid = false;
 
+  private subscriptions: Subscription[] = [];
+
   constructor(
     private authServ: AuthenticationService,
     private router: Router
@@ -24,7 +27,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  private addValidators() {
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    unsubscribe(this.subscriptions);
+  }
+
+  private add_validators() {
     this.login_form.get('username')?.addValidators([Validators.required]);
     this.login_form
       .get('password')
@@ -33,12 +42,27 @@ export class LoginComponent implements OnInit {
     this.login_form.get('password')?.updateValueAndValidity();
   }
 
+  private route_to_dashboard() {
+    this.router.navigate(['../dashboard']);
+  }
+
+  private set_token(token: string) {
+    return this.authServ.set_token(token);
+  }
+
   private login() {
-    this.authServ.login(this.login_form.value).subscribe();
+    let subscription = this.authServ
+      .login(this.login_form.value)
+      .subscribe(({ token, message }: any) => {
+        if (message === 'Login Successful')
+          this.set_token(token).then(() => this.route_to_dashboard());
+      });
+
+    this.subscriptions.push(subscription);
   }
 
   public submit() {
-    this.addValidators();
+    this.add_validators();
     if (
       this.login_form.get('username')?.valid &&
       this.login_form.get('password')?.valid
