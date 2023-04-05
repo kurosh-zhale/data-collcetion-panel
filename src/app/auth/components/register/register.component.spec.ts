@@ -32,7 +32,7 @@ describe('RegisterComponent', () => {
   it('should validate password', () => {
     component.registeration_form.get('password')?.setValue('123');
 
-    component.addValidators('password');
+    component.add_validators();
 
     expect(component.registeration_form.get('password')?.valid).toEqual(false);
   });
@@ -43,7 +43,7 @@ describe('RegisterComponent', () => {
       .get('confirm_password')
       ?.setValue('InvalidConfirmation');
 
-    component.addValidators('confirm_password');
+    component.add_validators();
 
     expect(component.registeration_form.get('confirm_password')?.valid).toEqual(
       false
