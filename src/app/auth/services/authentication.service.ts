@@ -7,18 +7,6 @@ import { Subject, Observable, map, BehaviorSubject } from 'rxjs';
 export class AuthenticationService {
   constructor(private http: HttpClient) {}
 
-  public get userToken(): string | null {
-    return localStorage.getItem('TOKEN');
-  }
-
-  public async set_token(token: string) {
-    localStorage.setItem('TOKEN', token);
-  }
-
-  public remove_token() {
-    localStorage.removeItem('TOKEN');
-  }
-
   public login(body: any) {
     return this.http.post(environment.baseUrl + 'login', {
       ...body,

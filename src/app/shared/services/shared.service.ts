@@ -6,7 +6,19 @@ import { environment } from 'src/environments/environment.prod';
 export class SharedService {
   constructor(private http: HttpClient) {}
 
-  get_user(id: string) {
-    return this.http.get(environment.baseUrl + 'user/' + id);
+  get_user_profile(token:string) {
+    this.http.get(environment.baseUrl+'userlogin/'+token);
+  }
+
+  public get userToken(): string | null {
+    return localStorage.getItem('TOKEN');
+  }
+
+  public async set_token(token: string) {
+    localStorage.setItem('TOKEN', token);
+  }
+
+  public remove_token() {
+    localStorage.removeItem('TOKEN');
   }
 }

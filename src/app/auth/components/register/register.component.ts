@@ -5,6 +5,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { BehaviorSubject, Observable, Subject, Subscription, map } from 'rxjs';
 import { Router } from '@angular/router';
 import { unsubscribe } from 'src/app/shared/utils/unsubscriber';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-register',
@@ -28,7 +29,11 @@ export class RegisterComponent implements OnInit {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(public authServ: AuthenticationService, private router: Router) {}
+  constructor(
+    public authServ: AuthenticationService,
+    private sharedServ: SharedService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.get_organizations();
@@ -67,7 +72,7 @@ export class RegisterComponent implements OnInit {
   }
 
   private set_token(token: string) {
-    this.authServ
+    this.sharedServ
       .set_token(token)
       .then(() => this.route_to_email_confirmation(token));
   }

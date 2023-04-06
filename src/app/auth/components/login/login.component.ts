@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
 import { unsubscribe } from 'src/app/shared/utils/unsubscriber';
 import { Subscription } from 'rxjs';
+import { SharedService } from 'src/app/shared/services/shared.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authServ: AuthenticationService,
+    private sharedServ:SharedService,
     private router: Router
   ) {}
 
@@ -47,7 +49,7 @@ export class LoginComponent implements OnInit {
   }
 
   private set_token(token: string) {
-    this.authServ.set_token(token).then(() => this.route_to_dashboard());
+    this.sharedServ.set_token(token).then(() => this.route_to_dashboard());
   }
 
   private login() {
