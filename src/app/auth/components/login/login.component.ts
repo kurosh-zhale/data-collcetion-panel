@@ -52,7 +52,10 @@ export class LoginComponent implements OnInit {
 
   private login() {
     let subscription = this.authServ
-      .login(this.login_form.value)
+      .login({
+        ...this.login_form.value,
+        username: this.login_form.get('username')?.value?.trimEnd(),
+      })
       .subscribe(({ token, message }: any) => {
         if (message === 'Login Successful') this.set_token(token);
       });
