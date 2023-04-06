@@ -5,25 +5,20 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import {
   HttpClientTestingModule,
-  HttpTestingController,
 } from '@angular/common/http/testing';
-import { SharedService } from 'src/app/shared/services/shared.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let authServ: Partial<AuthenticationService>;
-  let sharedServ: Partial<SharedService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RegisterComponent],
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [HttpClientTestingModule],
-      providers: [
-        { provide: AuthenticationService, userValue: authServ },
-        { provide: SharedService, useValue: sharedServ },
-      ],
+      imports: [HttpClientTestingModule, SharedModule],
+      providers: [{ provide: AuthenticationService, userValue: authServ }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RegisterComponent);
