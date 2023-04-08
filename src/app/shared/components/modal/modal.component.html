@@ -1,0 +1,15 @@
+<div
+  class="absolute top-0 left-0 w-[100vw] h-[100vh] bg-black bg-opacity-70 short-trasition cursor-pointer flex justify-center items-center"
+  [ngClass]="opend ? 'visible' : 'invisible'"
+  (click)="close()"
+>
+  <div
+    class="card-light custom-transition min-w-[500px] min-h-[500px] z-10 cursor-default long-transition relative"
+    [ngClass]="
+      opend ? 'visible opacity-100 top-0' : 'invisible opacity-0 top-[100px]'
+    "
+    id="modal"
+  >
+    <ng-template appDynamicComponent></ng-template>
+  </div>
+</div>
