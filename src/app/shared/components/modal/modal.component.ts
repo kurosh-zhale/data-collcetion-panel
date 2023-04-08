@@ -69,6 +69,6 @@ export class ModalComponent implements OnInit {
 
   close() {
     this.isOpen = false;
-    this.destroy_component();
+    setTimeout(() => this.destroy_component(), 300);
   }
 }
