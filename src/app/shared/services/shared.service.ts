@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 
@@ -6,12 +6,12 @@ import { environment } from 'src/environments/environment.prod';
 export class SharedService {
   constructor(private http: HttpClient) {}
 
-  get_user_profile(token:string) {
-    this.http.get(environment.baseUrl+'userlogin/'+token);
-  }
-
   public get userToken(): string | null {
     return localStorage.getItem('TOKEN');
+  }
+
+  get_user_by_token() {
+    return this.http.get(environment.baseUrl + 'userlogin/' + this.userToken);
   }
 
   public async set_token(token: string) {
