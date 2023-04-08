@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, map, mergeMap } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
-import { SharedService } from 'src/app/shared/services/shared.service';
-
+import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
+import { AddProjectComponent } from './add-project/add-project.component';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
@@ -10,6 +10,8 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 })
 export class ProjectsComponent implements OnInit {
   projectsList: BehaviorSubject<any> = new BehaviorSubject<any>([]);
+
+  @ViewChild('modal') modal!: ModalComponent;
 
   constructor(private dashServ: DashboardService) {}
 
@@ -36,5 +38,9 @@ export class ProjectsComponent implements OnInit {
         })
       )
       .subscribe((data) => this.projectsList.next(data));
+  }
+
+  openModal() {
+    this.modal.open(AddProjectComponent);
   }
 }
