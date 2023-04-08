@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { mergeMap, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { environment } from 'src/environments/environment.prod';
 
