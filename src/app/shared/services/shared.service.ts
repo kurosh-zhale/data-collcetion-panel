@@ -10,7 +10,7 @@ export class SharedService {
     return localStorage.getItem('TOKEN');
   }
 
-  get_user_by_token() {
+  public get_user_by_token() {
     return this.http.get(environment.baseUrl + 'userlogin/' + this.userToken);
   }
 

@@ -14,6 +14,7 @@ import { LogsComponent } from './components/logs/logs.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardService } from './services/dashboard.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddProjectComponent } from './components/projects/add-project/add-project.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProjectsComponent,
     PinsComponent,
     LogsComponent,
+    AddProjectComponent,
   ],
   imports: [
     CommonModule,
