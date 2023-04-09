@@ -104,6 +104,10 @@ input select {
   color: var(--dark);
 }
 
+.change-btn {
+  @apply bg-blue-600 rounded-md text-light w-32 h-1/2 ml-auto mr-5 transition-all;
+}
+
 .text-light {
   color: var(--light);
 }
