@@ -21,4 +21,8 @@ export class SharedService {
   public remove_token() {
     localStorage.removeItem('TOKEN');
   }
+
+  public get_organizations() {
+    return this.http.get(environment.baseUrl + 'providers');
+  }
 }

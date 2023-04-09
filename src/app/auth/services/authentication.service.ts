@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { Subject, Observable, map, BehaviorSubject } from 'rxjs';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Injectable()
 export class AuthenticationService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private sharedServ: SharedService) {}
 
   public login(body: any) {
     return this.http.post(environment.baseUrl + 'login', {
@@ -39,6 +40,6 @@ export class AuthenticationService {
   }
 
   public get_organizations() {
-    return this.http.get(environment.baseUrl + 'providers');
+    return this.sharedServ.get_organizations();
   }
 }
