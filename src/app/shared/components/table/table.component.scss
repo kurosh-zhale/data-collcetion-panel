@@ -1,0 +1,23 @@
+.my-table {
+  width: 100%;
+  border-width: 1px;
+  border-style: none;
+  border-color: #ececec;
+  border-collapse: collapse;
+  background-color: #1c1b1f;
+  color: #ececec;
+}
+
+.my-table th,
+.my-table td {
+  border-width: 1px;
+  border-style: none;
+  border-color: #ececec;
+  text-align: center;
+}
+
+.my-table thead {
+  background-color: #1c1b1f;
+  color: #ececec;
+  border: 1px solid transparent;
+}

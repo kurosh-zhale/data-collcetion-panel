@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedService } from './services/shared.service';
 import { ModalComponent } from './components/modal/modal.component';
 import { DynamicComponentDirective } from './directives/dynamic-component.directive';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { DynamicComponentDirective } from './directives/dynamic-component.direct
     PaginationComponent,
     ModalComponent,
     DynamicComponentDirective,
+    TableComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   exports: [
@@ -23,6 +25,7 @@ import { DynamicComponentDirective } from './directives/dynamic-component.direct
     CheckBoxComponent,
     PaginationComponent,
     ModalComponent,
+    TableComponent,
   ],
   providers: [SharedService],
 })
