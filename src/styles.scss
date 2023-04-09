@@ -105,7 +105,7 @@ input select {
 }
 
 .change-btn {
-  @apply bg-blue-600 rounded-md text-light w-32 h-1/2 ml-auto mr-5 transition-all;
+  @apply bg-blue-600 rounded-md text-light ml-auto mr-5 transition-all font-semibold p-3 w-max h-[50px];
 }
 
 .text-light {
