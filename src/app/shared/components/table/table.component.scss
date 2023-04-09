@@ -2,22 +2,30 @@
   width: 100%;
   border-width: 1px;
   border-style: none;
-  border-color: #ececec;
+  border-color: var(--light);
   border-collapse: collapse;
-  background-color: #1c1b1f;
-  color: #ececec;
+  background-color: var(--dark);
+  color: var(--light);
 }
 
 .my-table th,
 .my-table td {
-  border-width: 1px;
-  border-style: none;
-  border-color: #ececec;
   text-align: center;
+  width: min-content;
+  padding: 8px;
+}
+
+.my-table tr {
+  transition: all 150ms ease-out;
+}
+
+.my-table tbody>tr:hover {
+  background-color: #34333a;
+  cursor: pointer;
 }
 
 .my-table thead {
-  background-color: #1c1b1f;
-  color: #ececec;
+  background-color: var(--dark);
+  color: var(--light);
   border: 1px solid transparent;
 }

@@ -2,12 +2,12 @@
   <table class="my-table">
     <thead>
       <tr>
-        <th *ngFor="let header of headers">{{ header }}</th>
+        <th *ngFor="let header of headers">{{ header.replace('_',' ') }}</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of dataList">
-        <td *ngFor="let header of headers; let i = index">{{ data[i] }}</td>
+      <tr *ngFor="let data of tableData">
+        <td *ngFor="let header of headers">{{ data[header] }}</td>
       </tr>
     </tbody>
   </table>
