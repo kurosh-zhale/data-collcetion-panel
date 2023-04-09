@@ -1,11 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  ViewContainerRef,
-  ViewChild,
-  ComponentFactory,
-} from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
 import { DynamicComponentDirective } from '../../directives/dynamic-component.directive';
 
 @Component({
