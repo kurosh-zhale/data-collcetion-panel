@@ -13,7 +13,13 @@ export class SettingsService {
     return this.sharedServ.get_organizations();
   }
 
-  create_organization() {
-    return this.http.post(environment.baseUrl + 'providers', {});
+  create_organization(body: any) {
+    return this.http.post(environment.baseUrl + 'new_provider', {
+      name: body.name,
+      short_form: body.short,
+      address: {},
+      email: body.email.trimEnd(),
+      code: '',
+    });
   }
 }

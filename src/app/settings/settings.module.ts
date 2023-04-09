@@ -5,17 +5,15 @@ import { SettingsRoutingModule } from './routes/settings-routing.module';
 import { LayoutComponent } from './components/layout/layout.component';
 import { SideBarComponent } from './components/layout/side-bar/side-bar.component';
 import { ProfileComponent } from './components/profile/profile.component';
-
+import { SharedModule } from '../shared/shared.module';
+import { OrganizationsComponent } from './components/organizations/organizations.component';
+import { SettingsService } from './services/settings.service';
+import { AddOrganizationComponent } from './components/organizations/add-organization/add-organization.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    LayoutComponent,
-    SideBarComponent,
-    ProfileComponent
-  ],
-  imports: [
-    CommonModule,
-    SettingsRoutingModule
-  ]
+  declarations: [LayoutComponent, SideBarComponent, ProfileComponent,OrganizationsComponent, AddOrganizationComponent],
+  imports: [CommonModule, SettingsRoutingModule, SharedModule,ReactiveFormsModule],
+  providers:[SettingsService]
 })
-export class SettingsModule { }
+export class SettingsModule {}

@@ -1,7 +1,7 @@
 <div class="flex flex-col justify-evenly gap-8 w-full h-full p-5">
   <span class="text-dark text-2xl font-bold">List of organizations</span>
   <app-table [data-list]="organizations"></app-table>
-  <button class="change-btn ">Add organization</button>
+  <button class="change-btn" (click)="openModal()">Add organization</button>
 </div>
 
-<!-- <app-modal #modal></app-modal> -->
+<app-modal #modal></app-modal>

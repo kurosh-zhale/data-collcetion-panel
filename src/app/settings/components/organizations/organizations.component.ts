@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, Subject, map } from 'rxjs';
 import { SettingsService } from '../../services/settings.service';
+import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
+import { AddOrganizationComponent } from './add-organization/add-organization.component';
 
 @Component({
   selector: 'app-organizations',
@@ -9,6 +11,8 @@ import { SettingsService } from '../../services/settings.service';
 })
 export class OrganizationsComponent implements OnInit {
   organizations = new BehaviorSubject<any>([]);
+
+  @ViewChild('modal') modal!:ModalComponent;
 
   constructor(private settingsServ: SettingsService) {}
 
@@ -33,5 +37,9 @@ export class OrganizationsComponent implements OnInit {
         })
       )
       .subscribe((data: any) => this.organizations.next(data));
+  }
+
+  openModal(){
+    this.modal.open(AddOrganizationComponent);
   }
 }
