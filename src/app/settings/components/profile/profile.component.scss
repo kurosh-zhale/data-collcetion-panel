@@ -1,6 +1,41 @@
 .info {
-    border: #3f3f3f 1px solid;
-    border-radius: 5px;
-    padding: 1px;
-    background: #313131;
+  border: #3f3f3f 1px solid;
+  border-radius: 5px;
+  padding: 1px;
+  background: #313131;
 }
+
+.account-image{
+  background-image: url('../../../../assets/images/icons/account-avatar-person-svgrepo-com.svg');
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-position: 50% 30%;
+}
+
+.profile-image {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+
+.profile-container:after {
+  content: "change picture";
+  position: static;
+  margin-top: auto;
+  z-index: 20;
+  width: 100%;
+  height: 0px;
+  font-weight: 700;
+  font-size: medium;
+  background-color: var(--grey);
+  color: var(--light);
+  opacity: 90%;
+  transition: all 230ms ease-in;
+  text-align: center;
+  margin-top: auto;
+}
+
+.profile-container:hover::after{
+  height: 20%;
+}
+

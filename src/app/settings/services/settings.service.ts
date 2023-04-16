@@ -22,4 +22,8 @@ export class SettingsService {
       code: '',
     });
   }
+
+  update_user(user:any){
+    return this.http.patch(environment.baseUrl+'users/'+user._id,user);
+  }
 }
