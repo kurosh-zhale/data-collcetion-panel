@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { DynamicComponentDirective } from '../../directives/dynamic-component.directive';
 
 @Component({
@@ -10,7 +10,7 @@ export class ModalComponent implements OnInit {
   @ViewChild(DynamicComponentDirective, { static: true })
   private host!: DynamicComponentDirective;
 
-  private modal: HTMLElement | null = null;
+  @ViewChild('modal') private modal!:ElementRef<HTMLDivElement>;
 
   private isOpen: boolean = false;
 
@@ -20,27 +20,26 @@ export class ModalComponent implements OnInit {
     return this.isOpen;
   }
 
-  constructor() {}
+  constructor(private renderer:Renderer2) {}
 
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    this.modal = document.getElementById('modal');
     this.stop_modal_propagation();
   }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.modal?.removeEventListener('click', this.listener);
+    this.modal.nativeElement.removeEventListener('click', this.listener);
   }
 
   private stop_modal_propagation() {
-    this.listener = this.modal?.addEventListener('click', (ev: MouseEvent) =>
-      ev.stopPropagation()
-    );
+    this.listener = this.modal.nativeElement.addEventListener('click',(ev)=>{
+      ev.stopPropagation();
+    });
   }
 
   private load_component(component: any) {
