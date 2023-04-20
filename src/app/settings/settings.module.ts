@@ -10,9 +10,10 @@ import { OrganizationsComponent } from './components/organizations/organizations
 import { SettingsService } from './services/settings.service';
 import { AddOrganizationComponent } from './components/organizations/add-organization/add-organization.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SingleOrganizationComponent } from './components/single-organization/single-organization.component';
 
 @NgModule({
-  declarations: [LayoutComponent, SideBarComponent, ProfileComponent,OrganizationsComponent, AddOrganizationComponent],
+  declarations: [LayoutComponent, SideBarComponent, ProfileComponent,OrganizationsComponent, AddOrganizationComponent, SingleOrganizationComponent],
   imports: [CommonModule, SettingsRoutingModule, SharedModule,ReactiveFormsModule],
   providers:[SettingsService]
 })

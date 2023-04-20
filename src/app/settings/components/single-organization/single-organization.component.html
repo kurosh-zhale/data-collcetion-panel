@@ -1,0 +1,20 @@
+<div class="flex flex-col justify-evenly gap-y-12 w-full h-full p-5">
+<!-- Members -->
+  <div>
+    <span class="text-dark text-2xl font-bold">Members</span>
+    <app-table [data-list]="members"></app-table>
+    <button class="change-btn" (click)="open_modal('members')">
+      Add Members
+    </button>
+  </div>
+  <!-- Projects -->
+  <div>
+    <span class="text-dark text-2xl font-bold">Projects</span>
+    <app-table [data-list]="projects"></app-table>
+    <button class="change-btn" (click)="open_modal('projects')">
+      Add projects
+    </button>
+  </div>
+</div>
+
+<app-modal #modal></app-modal>

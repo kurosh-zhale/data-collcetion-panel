@@ -12,7 +12,7 @@ import { AddOrganizationComponent } from './add-organization/add-organization.co
 export class OrganizationsComponent implements OnInit {
   organizations = new BehaviorSubject<any>([]);
 
-  @ViewChild('modal') modal!:ModalComponent;
+  @ViewChild('modal') modal!: ModalComponent;
 
   constructor(private settingsServ: SettingsService) {}
 
@@ -25,8 +25,10 @@ export class OrganizationsComponent implements OnInit {
       .get_organizations()
       .pipe(
         map(({ providers }: any) => {
-          return providers.map((provider: any) => {
+          const newProviders = providers.map((provider: any, i: number) => {
+          
             return {
+              id: provider._id,
               name: provider.name,
               creation_date: new Date(
                 provider.create_date
@@ -34,12 +36,17 @@ export class OrganizationsComponent implements OnInit {
               modify_date: new Date(provider.modify_date).toLocaleDateString(),
             };
           });
+          return newProviders;
         })
       )
       .subscribe((data: any) => this.organizations.next(data));
   }
 
-  openModal(){
+  open_modal() {
     this.modal.open(AddOrganizationComponent);
+  }
+
+  navigate_to(event:string) {
+    this.settingsServ.navigate_to_Org(event);
   }
 }

@@ -132,7 +132,7 @@
       [ngClass]="!static ? 'form-submit-btn text-dark ' : 'change-btn'"
       (click)="update_user()"
     >
-      change
+      {{static? 'change':'submit'}}
     </button>
   </div>
 </div>
