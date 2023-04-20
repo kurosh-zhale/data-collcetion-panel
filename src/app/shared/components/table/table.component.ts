@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { BehaviorSubject, Subscription, map } from 'rxjs';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { BehaviorSubject, Observable, Subscription, map } from 'rxjs';
 import { unsubscribe } from '../../utils/unsubscriber';
 
 @Component({
@@ -8,9 +8,12 @@ import { unsubscribe } from '../../utils/unsubscriber';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  @Input('data-list') dataList: BehaviorSubject<any> = new BehaviorSubject<any>(
-    []
-  );
+  @Input('data-list') dataList: BehaviorSubject<any[]> = new BehaviorSubject<
+    any[]
+  >([]);
+
+  @Output('click-event') click: EventEmitter<string> = new EventEmitter<string>();
+
   headers: string[] = [];
 
   tableData: any[] = [];
@@ -20,7 +23,7 @@ export class TableComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.get_headers();
+    this.set_data();
     this.modify_headers();
   }
 
@@ -30,25 +33,23 @@ export class TableComponent implements OnInit {
     unsubscribe(this.subscriptions);
   }
 
-  get_headers() {
-    let subscription = this.dataList
-      .pipe(
-        map((list) => {
-          list.map((data: any, i: number) => {
-            if (i === 0) this.headers = Object.keys(data);
-          });
-          return list;
-        })
-      )
-      .subscribe((list) => (this.tableData = list));
+  private set_data() {
+    let subscription = this.dataList.subscribe((list) => {
+      this.headers = Object.keys(list[0]).filter((keys) => keys !== 'id');
+      this.tableData = list;
+    });
 
     this.subscriptions.push(subscription);
   }
 
-  modify_headers() {
+  private modify_headers() {
     this.headers.map((header: string) => {
       if (header.includes('_')) return header.replace('_', ' ');
       else return header;
     });
+  }
+
+  on_click(rowID:string) {
+    this.click.emit(rowID);
   }
 }

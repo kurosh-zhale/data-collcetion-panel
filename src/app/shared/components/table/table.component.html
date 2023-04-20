@@ -2,11 +2,11 @@
   <table class="my-table">
     <thead>
       <tr>
-        <th *ngFor="let header of headers">{{ header.replace('_',' ') }}</th>
+        <th *ngFor="let header of headers">{{ header.replace("_", " ") }}</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of tableData">
+      <tr *ngFor="let data of tableData" (click)="on_click(data?.id)">
         <td *ngFor="let header of headers">{{ data[header] }}</td>
       </tr>
     </tbody>
