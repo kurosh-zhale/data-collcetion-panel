@@ -25,4 +25,8 @@ export class SharedService {
   public get_organizations() {
     return this.http.get(environment.baseUrl + 'providers');
   }
+
+  public get_projects() {
+    return this.http.get(environment.baseUrl + 'projects');
+  }
 }
