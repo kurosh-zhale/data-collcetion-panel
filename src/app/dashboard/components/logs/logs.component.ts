@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, Subscription, map } from 'rxjs';
+import { unsubscribe } from 'src/app/shared/utils/unsubscriber';
 
 @Component({
   selector: 'app-logs',
@@ -12,6 +13,8 @@ export class LogsComponent implements OnInit {
 
   dataList: BehaviorSubject<any> = new BehaviorSubject([]);
 
+  subscriptions:Subscription[]=[];
+
   constructor(private dashServ: DashboardService) {}
 
   ngOnInit(): void {
@@ -21,11 +24,11 @@ export class LogsComponent implements OnInit {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.get_data().unsubscribe();
+    unsubscribe(this.subscriptions);
   }
 
   get_data() {
-    return this.dashServ
+    let subscription = this.dashServ
       .get_dataitems()
       .pipe(
         map(({ dataitems }: any, index) =>
@@ -42,5 +45,7 @@ export class LogsComponent implements OnInit {
         )
       )
       .subscribe((data) => this.dataList.next(data));
+
+      this.subscriptions.push(subscription);
   }
 }
