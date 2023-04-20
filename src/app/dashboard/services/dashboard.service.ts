@@ -13,7 +13,7 @@ export class DashboardService {
   }
 
   get_projects() {
-    return this.http.get(environment.baseUrl + 'projects');
+    return this.sharedServ.get_projects();
   }
 
   add_project(name: string | null) {
