@@ -2,7 +2,7 @@
   <div
     class="flex w-full h-12 shadow-md rounded-md bg-slate-100 justify-between items-center px-3 py-2 sticky top-0"
   >
-    <app-pagination [pages]="0"></app-pagination>
+    <app-pagination [pages]="5"></app-pagination>
     <div class="flex justify-between w-[100px] h-full items-center">
       <button class="rounded-sm shadow-md w-8 h-8 bg-white border-gray-300 p-1">
         <img
@@ -19,10 +19,10 @@
     </div>
   </div>
   <ng-container *ngIf="mode === 'grid'">
-    <div class="grid grid-cols-3 grid-rows-2 gap-4 h-min w-full">
+    <div class="grid grid-cols-6 gap-4 h-min p-5 w-full">
       <div
         *ngFor="let data of dataList | async"
-        class="card-dark col-span-1 row-span-1 flex flex-col !p-0 overflow-hidden"
+        class="card-dark col-span-1 row-span-1 flex flex-col justify-self-center my-2 !p-0 overflow-hidden"
         role="button"
       >
         <img
