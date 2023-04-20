@@ -1,0 +1,7 @@
+.sidebar-btn {
+    @apply cursor-pointer flex justify-center h-1/4  hover:bg-orange-200 border-y-orange-200;
+}
+
+.cancle-btn {
+    @apply cursor-pointer flex justify-center h-10 hover:bg-orange-200 mx-3 -mb-3 rounded-md;
+}
