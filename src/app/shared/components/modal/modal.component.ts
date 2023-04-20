@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewContainerRef,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { DynamicComponentDirective } from '../../directives/dynamic-component.directive';
 
 @Component({
@@ -10,7 +16,7 @@ export class ModalComponent implements OnInit {
   @ViewChild(DynamicComponentDirective, { static: true })
   private host!: DynamicComponentDirective;
 
-  @ViewChild('modal') private modal!:ElementRef<HTMLDivElement>;
+  @ViewChild('modal') private modal!: ElementRef<HTMLDivElement>;
 
   private isOpen: boolean = false;
 
@@ -20,7 +26,7 @@ export class ModalComponent implements OnInit {
     return this.isOpen;
   }
 
-  constructor(private renderer:Renderer2) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
@@ -37,7 +43,7 @@ export class ModalComponent implements OnInit {
   }
 
   private stop_modal_propagation() {
-    this.listener = this.modal.nativeElement.addEventListener('click',(ev)=>{
+    this.listener = this.modal.nativeElement.addEventListener('click', (ev) => {
       ev.stopPropagation();
     });
   }
