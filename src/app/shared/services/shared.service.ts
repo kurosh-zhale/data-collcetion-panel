@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.prod';
 
 @Injectable()
@@ -28,5 +29,16 @@ export class SharedService {
 
   public get_projects() {
     return this.http.get(environment.baseUrl + 'projects');
+  }
+
+  public add_project(name: string | null) {
+    return this.get_user_by_token().pipe(
+      switchMap(({ _id }: any) => {
+        return this.http.post(environment.baseUrl + 'new_project', {
+          name: name,
+          owner: _id,
+        });
+      })
+    );
   }
 }

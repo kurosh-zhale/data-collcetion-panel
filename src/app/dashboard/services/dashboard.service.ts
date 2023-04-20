@@ -16,16 +16,6 @@ export class DashboardService {
     return this.sharedServ.get_projects();
   }
 
-  add_project(name: string | null) {
-    return this.sharedServ.get_user_by_token().pipe(
-      switchMap(({ _id }: any) => {
-        return this.http.post(environment.baseUrl + 'new_project', {
-          name: name,
-          owner: _id,
-        });
-      })
-    );
-  }
 
   async logout() {
     localStorage.removeItem('TOKEN');

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, map, mergeMap } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
-import { AddProjectComponent } from './add-project/add-project.component';
+import { AddProjectComponent } from '../../../shared/components/shared-forms/add-project/add-project.component';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
