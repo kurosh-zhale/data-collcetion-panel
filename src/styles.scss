@@ -9,7 +9,8 @@
   --grey: #00000099;
   --orange: #cf834a;
   --lime-light: #d5faa7;
-  --lime-dark: #b8ff60;
+  --lime-border: #a5c081;
+  --green: #7bda00;
   --link-blue: #0ba2ec80;
   --link-purple: #340bec80;
   --shadow-light: #c9c9c9;
@@ -72,12 +73,12 @@ input select {
 .form-submit-btn {
   min-width: 80px;
   height: 47px;
-  border: transparent 1px solid;
-  border-radius: 35px;
+  border: var(--lime-border) 1px solid;
+  border-radius: 15px;
   color: var(--grey);
   font-weight: 700;
-  background-color: #d5faa7;
-  box-shadow: -2px 3px 4px var(--grey);
+  background-color: var(--lime-light);
+  // box-shadow: 0px 2px 2px var(--grey);
   transition: all 300ms ease-out;
 }
 
@@ -86,22 +87,26 @@ input select {
   background-color: transparent;
   color: var(--orange);
   border: 1px solid var(--orange);
-  border-radius: 35px;
+  border-radius: 15px;
   transition: all 300ms ease-out;
 }
 
 .form-submit-btn:hover {
-  background-color: var(--lime-dark);
+  background-color: var(--green);
   transform: translateY(-3px);
   box-shadow: 0px 5px 4px var(--grey);
   color: var(--dark);
+  border-color: transparent;
+  color: var(--light);
+  font-size: 1.2rem;
 }
 
 .form-reset-btn:hover {
   background-color: #cf834a;
   transform: translateY(-3px);
   box-shadow: 0px 5px 4px var(--grey);
-  color: var(--dark);
+  color: var(--light);
+  font-size: 1.2rem;
 }
 
 .change-btn {
