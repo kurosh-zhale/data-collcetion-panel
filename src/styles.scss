@@ -28,11 +28,13 @@
 
 body{
   overflow: hidden;
-  position: absolute;
+  position: fixed;
   left: 0px;
   top: 0px;
   margin: 0px;
   padding: 0px;
+  width: 100vw;
+  height: 100vh;
 }
 
 span {

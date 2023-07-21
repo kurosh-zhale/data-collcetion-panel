@@ -58,3 +58,17 @@
 div.about:hover > span {
   color: var(--light-secondary);
 }
+
+@media screen and (min-width:320px) and (max-width:426px) {
+  .landing-container::after{
+    width: 300vw;
+    bottom: -100vh;
+    right: -90vw;
+  }
+
+  .landing-container::before{
+    width: 300vw;
+    top: -100vh;
+    left: -90vw;
+  }
+}
