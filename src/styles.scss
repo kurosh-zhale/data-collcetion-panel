@@ -8,17 +8,21 @@
   --dark: #1c1b1f;
   --grey: #00000099;
   --orange: #cf834a;
-  --lime-light: #d5faa7;
+  --lime-light: #83d61d;
   --lime-border: #a5c081;
   --green: #7bda00;
   --link-blue: #0ba2ec80;
+  --dark-blue: #2563eb;
+  --light-blue: #3b82f6;
   --link-purple: #340bec80;
   --shadow-light: #c9c9c9;
   --error-red: #c74b4b;
 }
 
-body {
-  overflow-y: hidden;
+* {
+  font-family: "TRIAL Rooftop", sans-serif;
+  margin: 0px;
+  padding: 0px;
 }
 
 input select {
@@ -70,49 +74,6 @@ input select {
   transition: all 250ms ease-out;
 }
 
-.form-submit-btn {
-  min-width: 80px;
-  height: 47px;
-  border: var(--lime-border) 1px solid;
-  border-radius: 15px;
-  color: var(--grey);
-  font-weight: 700;
-  background-color: var(--lime-light);
-  // box-shadow: 0px 2px 2px var(--grey);
-  transition: all 300ms ease-out;
-}
-
-.form-reset-btn {
-  font-weight: 700;
-  background-color: transparent;
-  color: var(--orange);
-  border: 1px solid var(--orange);
-  border-radius: 15px;
-  transition: all 300ms ease-out;
-}
-
-.form-submit-btn:hover {
-  background-color: var(--green);
-  transform: translateY(-3px);
-  box-shadow: 0px 5px 4px var(--grey);
-  color: var(--dark);
-  border-color: transparent;
-  color: var(--light);
-  font-size: 1.2rem;
-}
-
-.form-reset-btn:hover {
-  background-color: #cf834a;
-  transform: translateY(-3px);
-  box-shadow: 0px 5px 4px var(--grey);
-  color: var(--light);
-  font-size: 1.2rem;
-}
-
-.change-btn {
-  @apply bg-blue-600 rounded-md text-light ml-auto mr-5 transition-all font-semibold p-3 w-max h-[50px] hover:bg-blue-500;
-}
-
 .text-light {
   color: var(--light);
 }
@@ -137,19 +98,19 @@ input select {
   background-color: var(--dark);
 }
 
-@mixin card($text, $bgc) {
+@mixin card($color, $text_color) {
   padding: 15px 30px;
   border: transparent 1px solid;
   border-radius: 28px;
-  box-shadow: 0px 0px 10px $bgc;
-  color: $text;
-  background-color: $bgc;
+  box-shadow: 0px 0px 10px $color;
+  color: $text_color;
+  background-color: $color;
 }
 
 .card-light {
-  @include card(var(--dark), var(--light));
+  @include card(var(--light), var(--dark));
 }
 
 .card-dark {
-  @include card(var(--light), var(--dark));
+  @include card(var(--dark), var(--light));
 }
