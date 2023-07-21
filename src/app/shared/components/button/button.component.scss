@@ -18,7 +18,7 @@
 }
 
 button {
-  @include button(blur(--light), var(--dark));
+  @include button(var(--light), var(--dark));
 }
 
 .mousedown {
@@ -32,15 +32,15 @@ button {
 }
 
 .submit {
-  @include button(var(--lime-light), var(--light));
+  @include button(var(--light-primary), var(--light));
 }
 
 .reset {
-  @include button(var(--orange), var(--light));
+  @include button(var(--light-accent-primary), var(--light));
 }
 
 .change {
-  @include button(var(--dark-blue), var(--light));
+  @include button(var(--light-secondary), var(--light));
 }
 
 .disabled {

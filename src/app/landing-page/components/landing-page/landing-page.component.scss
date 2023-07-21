@@ -1,0 +1,60 @@
+@keyframes blob_wave {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.landing-container::before {
+  content: "";
+  position: absolute;
+  left: -50vw;
+  top: -80vh;
+  width: 80vw;
+  aspect-ratio: 1;
+  border: solid transparent 1px;
+  border-radius: 99999999px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: repeat;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient id=%22b%22 gradientTransform=%22rotate(-45 .5 .5)%22%3E%3Cstop offset=%220%25%22 stop-color=%22%2308AEEA%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%232AF598%22%2F%3E%3C%2FlinearGradient%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M892 625q-48 125-156.5 195.5t-237 75.5Q370 901 247 837T85 636.5q-39-136.5 1.5-272T239 135q112-94 250-60.5T731.5 182Q836 256 888 378t4 247Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22url(%23b)%22 d=%22M892 625q-48 125-156.5 195.5t-237 75.5Q370 901 247 837T85 636.5q-39-136.5 1.5-272T239 135q112-94 250-60.5T731.5 182Q836 256 888 378t4 247Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  animation: blob_wave 10s linear infinite;
+}
+
+.landing-container::after {
+  content: "";
+  position: absolute;
+  right: -50vw;
+  bottom: -80vh;
+  width: 80vw;
+  aspect-ratio: 1;
+  border: solid transparent 1px;
+  border-radius: 99999999px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: repeat;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient id=%22b%22 gradientTransform=%22rotate(-45 .5 .5)%22%3E%3Cstop offset=%220%25%22 stop-color=%22%23FEE140%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%23FA709A%22%2F%3E%3C%2FlinearGradient%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M904.5 647.5Q852 795 716.5 876t-280 33Q292 861 207 749.5T80 485q-42-153 67.5-279.5t274-161Q586 10 710 115t185.5 245q61.5 140 9 287.5Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22url(%23b)%22 d=%22M904.5 647.5Q852 795 716.5 876t-280 33Q292 861 207 749.5T80 485q-42-153 67.5-279.5t274-161Q586 10 710 115t185.5 245q61.5 140 9 287.5Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  animation: blob_wave 10s linear infinite;
+}
+
+.about {
+  cursor: pointer;
+}
+
+.about > img {
+  transition: 100ms 100ms ease-out all;
+}
+.about > span {
+  transition: 100ms ease-out all;
+}
+
+.about:hover > img {
+  filter: invert(63%) sepia(28%) saturate(2988%) hue-rotate(306deg)
+    brightness(107%) contrast(96%);
+}
+
+div.about:hover > span {
+  color: var(--light-secondary);
+}

@@ -5,8 +5,10 @@ import { AuthGuard } from './shared/services/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth',
-    pathMatch: 'full',
+    loadChildren: () =>
+      import('./landing-page/landing-page.module').then(
+        (m) => m.LandingPageModule
+      ),
   },
   {
     path: 'auth',
@@ -16,13 +18,14 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
-    path:'settings',
-    loadChildren:()=>import('./settings/settings.module').then((m)=>m.SettingsModule),
-    canActivate: [AuthGuard]
-  }
+    path: 'settings',
+    loadChildren: () =>
+      import('./settings/settings.module').then((m) => m.SettingsModule),
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

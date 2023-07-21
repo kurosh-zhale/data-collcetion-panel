@@ -5,11 +5,12 @@
 
 :root {
   --light: #ececec;
-  --dark: #1c1b1f;
+  --dark: #1c274c;
   --grey: #00000099;
-  --orange: #cf834a;
-  --lime-light: #83d61d;
-  --lime-border: #a5c081;
+  --light-primary: #1edbb5;
+  --light-secondary: #0fbcda;
+  --light-accent-primary: #feda45;
+  --light-accent-secondary:#fa7894;
   --green: #7bda00;
   --link-blue: #0ba2ec80;
   --dark-blue: #2563eb;
@@ -25,10 +26,28 @@
   padding: 0px;
 }
 
+body{
+  overflow: hidden;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+
+span {
+  color: var(--dark);
+}
+
 input select {
   border: none;
   appearance: none;
   outline: none;
+}
+
+.logo {
+  font-family: "Alien League", sans-serif;
+  font-weight: 600;
 }
 
 .input {

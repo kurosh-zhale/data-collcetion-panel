@@ -1,0 +1,21 @@
+<div
+  class="flex flex-col gap-5 w-[100vw] h-[100vh]  justify-center landing-container"
+>
+<div class="flex flex-col gap-5 w-full h-1/2 mt-auto  justify-center items-center align-middle">
+  <span class="laptop:text-[5rem] desktop:text-[7rem] text-gray-600 logo">Data Collection</span>
+  <costume-button
+  type="submit"
+  title="Get started"
+  [routerLink]="['./auth']"
+  class="w-48"
+  ></costume-button>
+</div>
+  <div class="flex mt-auto mr-auto mb-3 ml-10 w-min align-middle items-center about">
+    <img
+      src="../../../../assets/images/icons/info-square-svgrepo-com.svg"
+      alt=""
+      width="25"
+    />
+    <span class="font-semibold ml-2" [routerLink]="['./about']">About</span>
+  </div>
+</div>
