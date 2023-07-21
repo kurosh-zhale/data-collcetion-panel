@@ -10,6 +10,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { DynamicComponentDirective } from './directives/dynamic-component.directive';
 import { TableComponent } from './components/table/table.component';
 import { AddProjectComponent } from './components/shared-forms/add-project/add-project.component';
+import { ButtonComponent } from './components/button/button.component';
 @NgModule({
   declarations: [
     SelectComponent,
@@ -19,6 +20,7 @@ import { AddProjectComponent } from './components/shared-forms/add-project/add-p
     DynamicComponentDirective,
     TableComponent,
     AddProjectComponent,
+    ButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,7 @@ import { AddProjectComponent } from './components/shared-forms/add-project/add-p
     ModalComponent,
     TableComponent,
     AddProjectComponent,
+    ButtonComponent,
   ],
   providers: [SharedService],
 })

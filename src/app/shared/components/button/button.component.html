@@ -1,0 +1,20 @@
+<button
+  [ngClass]="type"
+  [type]="type"
+  *ngIf="!disabled"
+  (mousedown)="set_style_on_mouse_event('mousedown')"
+  (mouseup)="set_style_on_mouse_event('mouseup')"
+  (mouseenter)="set_style_on_mouse_event('mouseenter')"
+  (mouseleave)="set_style_on_mouse_event('mouseleave')"
+  #btn
+>
+  {{ title }}
+</button>
+<button
+  class="disabled"
+  *ngIf="disabled"
+  (click)="set_style_on_mouse_event()"
+  #btn
+>
+  {{ title }}
+</button>

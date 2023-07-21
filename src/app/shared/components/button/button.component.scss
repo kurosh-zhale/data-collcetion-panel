@@ -1,0 +1,73 @@
+:host {
+  min-width: 80px;
+  min-height: 47px;
+}
+
+@mixin button($color, $text_color) {
+  width: 100%;
+  height: 100%;
+  min-width: inherit;
+  min-height: inherit;
+  background-color: $color;
+  color: $text_color;
+  border: color-mix(in srgb, $color 80%, black 20%) 1.5px solid;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 100ms ease-out;
+}
+
+button {
+  @include button(blur(--light), var(--dark));
+}
+
+.mousedown {
+  transform: translateY(4px);
+}
+
+.mouseenter {
+  box-shadow: 0px 2px 4px var(--grey);
+  transform: translateY(-3px);
+  font-size: 1.2rem;
+}
+
+.submit {
+  @include button(var(--lime-light), var(--light));
+}
+
+.reset {
+  @include button(var(--orange), var(--light));
+}
+
+.change {
+  @include button(var(--dark-blue), var(--light));
+}
+
+.disabled {
+  @include button(var(--grey), var(--light));
+  border-color: gray;
+  color: lightgray;
+  opacity: 60%;
+}
+
+@keyframes disabled_animation {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.disabled_animation {
+  animation: 300ms 1 disabled_animation linear;
+}
