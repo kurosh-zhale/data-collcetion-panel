@@ -1,4 +1,12 @@
-.body{
-    background-image: url('../../../../assets/images/login_background.jpg');
-    background-size: 100% 100%;
+.body {
+  background-image: url("../../../../assets/images/login_background.jpg");
+  background-size: cover;
+}
+
+.router {
+  transition: all 100ms linear;
+}
+
+.router:hover {
+  color: var(--light-accent-primary);
 }

@@ -10,7 +10,7 @@
   --light-primary: #1edbb5;
   --light-secondary: #0fbcda;
   --light-accent-primary: #feda45;
-  --light-accent-secondary:#fa7894;
+  --light-accent-secondary: #fa7894;
   --green: #7bda00;
   --link-blue: #0ba2ec80;
   --dark-blue: #2563eb;
@@ -26,7 +26,7 @@
   padding: 0px;
 }
 
-body{
+body {
   overflow: hidden;
   position: fixed;
   left: 0px;
@@ -37,7 +37,59 @@ body{
   height: 100vh;
 }
 
-span {
+h1.light {
+  color: var(--light);
+}
+
+h1.dark {
+  color: var(--dark);
+}
+
+h2.light {
+  color: var(--light);
+}
+
+h2.dark {
+  color: var(--dark);
+}
+
+h3.light {
+  color: var(--light);
+}
+
+h3.dark {
+  color: var(--dark);
+}
+
+h4.light {
+  color: var(--light);
+}
+
+h4.dark {
+  color: var(--dark);
+}
+
+h5.light {
+  color: var(--light);
+}
+
+h5.dark {
+  color: var(--dark);
+}
+
+span.light {
+  color: var(--light);
+}
+
+span.dark {
+  color: var(--dark);
+}
+
+p.light {
+  color: var(--light);
+}
+
+p.dark {
   color: var(--dark);
 }
 

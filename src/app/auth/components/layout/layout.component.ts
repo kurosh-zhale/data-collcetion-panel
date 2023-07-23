@@ -10,4 +10,6 @@ export class LayoutComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  route_link:string = 'register'
 }
