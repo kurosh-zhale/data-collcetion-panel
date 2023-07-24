@@ -21,9 +21,11 @@ export class LoginComponent implements OnInit {
 
   private subscriptions: Subscription[] = [];
 
+  public mobile: boolean = window.innerWidth < 420;
+
   constructor(
     private authServ: AuthenticationService,
-    private sharedServ:SharedService,
+    private sharedServ: SharedService,
     private router: Router
   ) {}
 

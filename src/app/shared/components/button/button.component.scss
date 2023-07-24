@@ -36,11 +36,11 @@ button {
 }
 
 .reset {
-  @include button(var(--light-accent-primary), var(--light));
+  @include button(var(--light-accent-secondary), var(--light));
 }
 
 .change {
-  @include button(var(--light-secondary), var(--light));
+  @include button(var(--light-primary), var(--light));
 }
 
 .disabled {

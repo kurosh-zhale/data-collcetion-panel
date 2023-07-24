@@ -143,7 +143,7 @@ input select {
 }
 
 .error {
-  color: var(--error-red);
+  color: var(--light-accent-secondary);
   transition: all 250ms ease-out;
 }
 
@@ -180,10 +180,22 @@ input select {
   background-color: $color;
 }
 
-.card-light {
+div.card-light {
   @include card(var(--light), var(--dark));
 }
 
-.card-dark {
+div.card-light > * {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+}
+
+div.card-dark {
   @include card(var(--dark), var(--light));
+}
+
+div.card-dark > * {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
 }

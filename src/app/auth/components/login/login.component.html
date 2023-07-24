@@ -1,72 +1,76 @@
-<div class="flex flex-col w-full h-full align-middle justify-around p-10">
-  <span class="text-grey self-center mx-auto text-xl font-semibold"
-    >Sign in</span
-  >
-  <form
-    class="grid grid-cols-6 grid-rows-10 gap-y-4 gap-x-3 mt-10"
-    [formGroup]="login_form"
-    (ngSubmit)="submit()"
-  >
-    <fieldset class="col-span-6 row-span-2">
-      <input
-        type="text"
-        formControlName="username"
-        class="input w-full"
-        placeholder="username or email"
-      />
-      <div class="error ml-4" *ngIf="login_form.invalid">
-        <p *ngIf="login_form.get('username')?.hasError('required')">
-          please enter your username or email
-        </p>
-      </div>
-    </fieldset>
-    <fieldset class="col-span-6 row-span-2">
-      <input
-        type="password"
-        formControlName="password"
-        class="input w-full"
-        placeholder="password"
-      />
-
-      <div class="error ml-4" *ngIf="login_form.invalid">
-        <p *ngIf="login_form.get('password')?.hasError('required')">
-          please enter your password
-        </p>
-        <p *ngIf="login_form.hasError('worng')">
-          username or password is incorrect
-        </p>
-      </div>
-    </fieldset>
-    <a
-      class="link row-start-auto w-max pl-3 cursor-pointer"
-      [routerLink]="'../forgot-password'"
-      >Forgot password</a
-    >
-    <fieldset class="col-start-5 col-end-7">
-      <app-check-box
-        [description]="'Remember me'"
-        class="text-grey"
-        (onClick)="login_form.get('remember_me')?.setValue($event)"
-      ></app-check-box>
-    </fieldset>
-    <button
-      type="reset"
-      class="form-reset-btn col-start-1 col-end-3 row-start-auto"
-    >
-      cancel
-    </button>
-    <button
-      type="submit"
-      class="form-submit-btn row-start-auto col-start-5 col-end-7"
-    >
-      login
-    </button>
-    <div class="col-start-2 col-end-6 row-start-auto flex justify-center">
-      <p class="text-dark w-max self-center mr-2">
-        Don't have an account?
-        <a class="cursor-pointer link" [routerLink]="'../register'">Sign up</a>
-        to create one.
+<span
+  class="dark opacity-75 self-center text-xl text-center font-semibold row-start-1 col-start-5 col-end-9 col-span-4"
+  >Sign in</span
+>
+<form
+  class="mt-10 row-start-3 gap-y-4 gap-x-3 row-end-auto col-span-12 grid grid-cols-6 grid-rows-4"
+  [formGroup]="login_form"
+  (ngSubmit)="submit()"
+>
+  <fieldset class="col-span-6 row-span-2">
+    <input
+      type="text"
+      formControlName="username"
+      class="input w-full"
+      placeholder="username or email"
+    />
+    <div class="error ml-4" *ngIf="login_form.invalid">
+      <p *ngIf="login_form.get('username')?.hasError('required')">
+        please enter your username or email
       </p>
     </div>
-  </form>
-</div>
+  </fieldset>
+  <fieldset class="col-span-6 row-span-2">
+    <input
+      type="password"
+      formControlName="password"
+      class="input w-full"
+      placeholder="password"
+    />
+
+    <div class="error ml-4" *ngIf="login_form.invalid">
+      <p *ngIf="login_form.get('password')?.hasError('required')">
+        please enter your password
+      </p>
+      <p *ngIf="login_form.hasError('worng')">
+        username or password is incorrect
+      </p>
+    </div>
+  </fieldset>
+  <a
+    class="link mobile:row-start-6 w-max mobile:w-full pl-3 cursor-pointer mobile:col-span-6 text-center"
+    [routerLink]="'../forgot-password'"
+    >Forgot password</a
+  >
+  <fieldset class="col-start-5 col-end-7 mobile:col-span-6 mobile:row-start-5">
+    <app-check-box
+      [description]="'Remember me'"
+      class="text-grey"
+      (onClick)="login_form.get('remember_me')?.setValue($event)"
+    ></app-check-box>
+  </fieldset>
+  <costume-button
+    type="reset"
+    class="col-start-1 col-end-3 mobile:col-span-3 mobile:mt-4"
+    title="cancel"
+  >
+  </costume-button>
+  <costume-button
+    type="submit"
+    class="form-submit-btn col-start-5 col-end-7 mobile:col-span-3 mobile:mt-4"
+    title="sign in"
+  >
+  </costume-button>
+  <!-- 
+    Firebase Authentication UI
+   -->
+  <div
+    class="col-start-2 col-end-6 mobile:col-start-1 mobile:col-end-7 mobile:w-full text-center mt-[15vh]"
+  >
+    <p class="dark w-full text-center">
+      Don't have an account? <br *ngIf="mobile" />
+      <a class="cursor-pointer link" [routerLink]="'../register'">Sign up</a>
+      to create one.
+    </p>
+  </div>
+</form>
