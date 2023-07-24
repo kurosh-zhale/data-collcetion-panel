@@ -1,13 +1,15 @@
-<div class="flex flex-col w-full h-full justify-around align-middle">
+<div
+  class="flex flex-col w-full h-full justify-around align-middle col-span-12"
+>
   <span class="text-xl text-grey self-center font-semibold"
     >Create an account</span
   >
   <form
     [formGroup]="registeration_form"
-    class="grid grid-cols-8 md:grid-rows-7 sm:grid-rows-10 gap-x-2 gap-y-4 h-min mt-5"
+    class="grid grid-cols-8 mobile:grid-cols-10 gap-x-2 gap-y-4 h-min mt-5 mobile:gap-y-1"
     (submit)="submitform()"
   >
-    <fieldset class="md:col-span-4 sm:col-span-8 row-start-auto">
+    <fieldset class="col-span-4 mobile:col-span-full">
       <input
         type="text"
         formControlName="first_name"
@@ -20,7 +22,7 @@
         >please enter your first name</span
       >
     </fieldset>
-    <fieldset class="md:col-span-4 sm:col-span-8 row-start-auto">
+    <fieldset class="col-span-4 mobile:col-span-full">
       <input
         type="text"
         formControlName="last_name"
@@ -33,7 +35,7 @@
         >please enter your last name</span
       >
     </fieldset>
-    <fieldset class="md:col-span-4 sm:col-span-8 row-start-auto">
+    <fieldset class="col-span-4 mobile:col-span-full">
       <input
         type="text"
         formControlName="username"
@@ -48,7 +50,7 @@
       </span>
     </fieldset>
 
-    <fieldset class="md:col-span-4 sm:col-span-8 row-start-auto">
+    <fieldset class="col-span-4 mobile:col-span-full">
       <input
         type="text"
         formControlName="email"
@@ -62,7 +64,7 @@
         please enter a valid email
       </span>
     </fieldset>
-    <fieldset class="col-span-8">
+    <fieldset class="col-span-full">
       <input
         type="password"
         formControlName="password"
@@ -82,7 +84,7 @@
         password is too short
       </span>
     </fieldset>
-    <fieldset class="col-span-8">
+    <fieldset class="col-span-full">
       <input
         type="password"
         formControlName="confirm_password"
@@ -104,7 +106,7 @@
         password does <b>not</b> match
       </span>
     </fieldset>
-    <fieldset class="md:col-span-4 sm:col-span-8">
+    <fieldset class="col-span-4 mobile:col-span-full">
       <app-select
         [data-list]="organizations"
         place-holder="organization*"
@@ -125,30 +127,30 @@
         { name: 'Diverse', value: 'Diverse' }
       ]"
       place-holder="gender"
-      class="md:col-span-2 sm:col-span-4"
+      class="col-span-2 mobile:col-span-5"
       role="button"
       (onSelect)="registeration_form.get('gender')?.setValue($event)"
     ></app-select>
     <input
       type="tel"
-      class="input md:col-span-2 sm:col-span-4"
+      class="input col-span-2 mobile:col-span-5"
       placeholder="phone"
       formControlName="phone"
     />
-    <button
+    <costume-button
+      title="register"
       type="submit"
-      class="form-submit-btn col-start-7 col-end-9 row-start-7 sm:row-start-7"
+      class="col-end-7 col-start-9 mobile:col-start-8 mobile:col-end-10 row-start-7 mobile:row-start-[10]"
     >
-      register
-    </button>
-    <button
+    </costume-button>
+    <costume-button
       type="reset"
-      class="form-reset-btn col-start-1 col-end-3 row-start-7 sm:row-start-13"
+      title="cancel"
+      class="col-start-5 col-end-7 mobile:col-start-5 mobile:col-end-7 row-start-7 mobile:row-start-[10]"
     >
-      cancel
-    </button>
+    </costume-button>
   </form>
-  <span class="text-md text-dark self-center mr-2"
+  <span class="text-md dark text-center mt-3 mobile:text-xs mobile:mt-8"
     >Already have an account?
     <a class="link" [routerLink]="'../login'">Log in</a>
     to get started
