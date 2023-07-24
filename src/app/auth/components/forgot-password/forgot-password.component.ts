@@ -14,6 +14,8 @@ export class ForgotPasswordComponent implements OnInit {
     Validators.email,
   ]);
 
+  public mobile:boolean = window.innerWidth < 420;
+
   constructor(
     private authServ: AuthenticationService,
     private router: Router
