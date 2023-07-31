@@ -1,9 +1,14 @@
 <div
   class="body w-[100vw] h-[100vh] flex flex-col justify-between sticky"
+  #container
 >
-  <div class="flex w-[100vw] px-10 mobile:px-8 h-min justify-evenly mt-5 mb-auto">
+  <div
+    class="flex w-[100vw] px-10 mobile:px-8 h-min justify-evenly mt-5 mb-auto"
+  >
     <div class="mr-auto flex justify-between">
-      <h1 class="light cursor-pointer text-3xl mobile:text-2xl logo">Data Collection</h1>
+      <h1 class="light cursor-pointer text-3xl mobile:text-2xl logo">
+        Data Collection
+      </h1>
     </div>
     <span
       class="light cursor-pointer self-center router mobile:text-md"
@@ -12,7 +17,9 @@
     >
   </div>
   <div class="w-full h-5/6 flex items-center my-auto">
-    <div class="card-light laptop:w-[60vw] desktop:w-[60vw] mobile:w-[85vw] mobile:h-max h-max m-auto">
+    <div
+      class="card-light laptop:w-[60vw] desktop:w-[60vw] mobile:w-[85vw] mobile:h-max h-max m-auto"
+    >
       <router-outlet></router-outlet>
     </div>
   </div>

@@ -1,6 +1,26 @@
 .body {
-  background-image: url("../../../../assets/images/login_background.jpg");
   background-size: cover;
+}
+
+.background-1 {
+  background-image: url("../../../../assets/images/login_background.jpg");
+  transition: all 500ms ease-in-out;
+}
+  .background-2 {
+  background-image: url("../../../../assets/images/flowers-8021795_1920.jpg");
+  transition: all 500ms ease-in-out;
+}
+.background-3 {
+  background-image: url("../../../../assets/images/aurora-1197753_1920.jpg");
+  transition: all 500ms ease-in-out;
+}
+.background-4 {
+  background-image: url("../../../../assets/images/ocean-3605547.jpg");
+  transition: all 500ms ease-in-out;
+}
+.background-5 {
+  background-image: url("../../../../assets/images/astronomy-1867616.jpg");
+  transition: all 500ms ease-in-out;
 }
 
 .router {
