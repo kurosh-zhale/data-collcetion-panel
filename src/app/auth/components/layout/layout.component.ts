@@ -62,7 +62,7 @@ export class LayoutComponent {
       } else {
         clearInterval(Interval);
       }
-    }, 6000);
+    }, 30000);
   }
 
   private set_router() {
