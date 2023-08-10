@@ -8,7 +8,16 @@
   (mouseleave)="set_style_on_mouse_event('mouseleave')"
   #btn
 >
-  {{ title }}
+  <span *ngIf="icon" [ngClass]="{ 'mr-1 -ml-3': title }">
+    <img [src]="icon" alt="" width="35" />
+  </span>
+  <span
+    [ngClass]="{
+      'mt-1': icon
+    }"
+  >
+    {{ title }}
+  </span>
 </button>
 <button
   class="disabled"

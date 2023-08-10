@@ -15,6 +15,9 @@
   font-weight: 700;
   font-size: 1rem;
   transition: all 100ms ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 button {
@@ -28,7 +31,6 @@ button {
 .mouseenter {
   box-shadow: 0px 2px 4px var(--grey);
   transform: translateY(-3px);
-  font-size: 1.2rem;
 }
 
 .submit {

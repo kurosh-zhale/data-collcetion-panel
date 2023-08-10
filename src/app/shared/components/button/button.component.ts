@@ -15,7 +15,8 @@ import {
 export class ButtonComponent implements OnInit {
   @Input() public type: 'submit' | 'reset' | 'button' = 'button';
   @Input() public disabled: boolean = false;
-  @Input() public title: string = 'submit';
+  @Input() public title: string = '';
+  @Input() public icon: null | string = null;
   @ViewChild('btn') private button!: ElementRef<HTMLButtonElement>;
 
   constructor(private renderer: Renderer2, private host: ElementRef) {}
@@ -26,6 +27,7 @@ export class ButtonComponent implements OnInit {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     this.disable();
+    console.log(this.icon);
   }
 
   public set_style_on_mouse_event(event?: string): void {
