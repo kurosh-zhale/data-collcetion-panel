@@ -3,7 +3,7 @@
   >Sign in</span
 >
 <form
-  class="mt-10 row-start-3 gap-y-4 gap-x-3 row-end-auto col-span-12 grid grid-cols-6 grid-rows-4"
+  class="mt-5 row-start-3 gap-3 row-end-auto col-span-12 grid grid-cols-6"
   [formGroup]="login_form"
   (ngSubmit)="submit()"
 >
@@ -12,11 +12,14 @@
       type="text"
       formControlName="username"
       class="input w-full"
-      placeholder="username or email"
+      placeholder="email"
     />
-    <div class="error ml-4" *ngIf="login_form.invalid">
+    <div class="error ml-4 mt-2">
       <p *ngIf="login_form.get('username')?.hasError('required')">
-        please enter your username or email
+        please enter your email
+      </p>
+      <p *ngIf="login_form.get('username')?.hasError('email')">
+        please enter a valid email
       </p>
     </div>
   </fieldset>
@@ -28,12 +31,9 @@
       placeholder="password"
     />
 
-    <div class="error ml-4" *ngIf="login_form.invalid">
+    <div class="error ml-4 mt-2">
       <p *ngIf="login_form.get('password')?.hasError('required')">
         please enter your password
-      </p>
-      <p *ngIf="login_form.hasError('worng')">
-        username or password is incorrect
       </p>
     </div>
   </fieldset>
@@ -51,21 +51,27 @@
   </fieldset>
   <costume-button
     type="reset"
-    class="col-start-1 col-end-3 mobile:col-span-3 mobile:mt-4"
+    class="col-start-3 col-end-5 mobile:col-span-3 mobile:mt-4"
     title="cancel"
   >
   </costume-button>
   <costume-button
     type="submit"
-    class="form-submit-btn col-start-5 col-end-7 mobile:col-span-3 mobile:mt-4"
+    class="col-start-5 col-end-7 mobile:col-span-3 mobile:mt-4"
     title="sign in"
+    [disabled]="login_form.invalid"
   >
   </costume-button>
-  <!-- 
-    Firebase Authentication UI
-   -->
+  <costume-button
+    icon="../../../../assets/images/icons/google_PNG19635.png"
+    class="col-span-1 laptop:row-start-6 desktop:row-start-6 mobile:col-span-6"
+  ></costume-button>
+  <costume-button
+    icon="../../../../assets/images/icons/GitHub-Symbol.png"
+    class="col-span-1 laptop:row-start-6 desktop:row-start-6 mobile:col-span-6"
+  ></costume-button>
   <div
-    class="col-start-2 col-end-6 mobile:col-start-1 mobile:col-end-7 mobile:w-full text-center mt-[15vh]"
+    class="col-start-2 col-end-6 mobile:col-start-1 mobile:col-end-7 mobile:w-full text-center mt-5"
   >
     <p class="dark w-full text-center">
       Don't have an account? <br *ngIf="mobile" />

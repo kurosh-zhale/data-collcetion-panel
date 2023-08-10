@@ -11,12 +11,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  public login_form = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-    remember_me: new FormControl(false),
-  });
-
+  public login_form!: FormGroup;
   form_is_invalid = false;
 
   private subscriptions: Subscription[] = [];
@@ -29,7 +24,13 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.login_form = new FormGroup({
+      username: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required]),
+      remember_me: new FormControl(false),
+    });
+  }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
@@ -57,23 +58,20 @@ export class LoginComponent implements OnInit {
   private login() {
     let subscription = this.authServ
       .login({
-        ...this.login_form.value,
-        username: this.login_form.get('username')?.value?.trimEnd(),
+        password: this.login_form.value.password,
+        email: this.login_form.value.username,
       })
-      .subscribe(({ token, message }: any) => {
-        if (message === 'Login Successful') this.set_token(token);
+      .subscribe({
+        next() {
+          console.log(this);
+        },
+        error(err) {},
       });
 
     this.subscriptions.push(subscription);
   }
 
   public submit() {
-    this.add_validators();
-    if (
-      this.login_form.get('username')?.valid &&
-      this.login_form.get('password')?.valid
-    ) {
-      this.login();
-    }
+    this.login();
   }
 }
