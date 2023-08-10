@@ -46,11 +46,14 @@ export class LayoutComponent {
   }
 
   private change_background(mode: boolean = true) {
-    let i: number = 1;
-    this.renderer.addClass(this.container.nativeElement, `background-1`);
+    let i: number = Math.floor(Math.random() * 10);
+    if (i > 5 || i === 0) i = 1;
+    console.log(i);
+
+    this.renderer.addClass(this.container.nativeElement, `background-${i}`);
     const Interval = setInterval(() => {
       if (mode) {
-        i === 5 ? (i = 1) : i++;
+        i === 5 || i === 0 ? (i = 1) : i++;
         this.renderer.addClass(this.container.nativeElement, `background-${i}`);
         this.renderer.removeClass(
           this.container.nativeElement,
@@ -59,7 +62,7 @@ export class LayoutComponent {
       } else {
         clearInterval(Interval);
       }
-    }, 60000);
+    }, 6000);
   }
 
   private set_router() {
