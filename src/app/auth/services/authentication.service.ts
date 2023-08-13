@@ -1,45 +1,62 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Subject, Observable, map, BehaviorSubject } from 'rxjs';
-import { SharedService } from 'src/app/shared/services/shared.service';
-
+import { Observable, from, of } from 'rxjs';
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  GithubAuthProvider,
+  getAuth,
+  Auth,
+  signInWithPopup,
+} from '@angular/fire/auth';
 @Injectable()
 export class AuthenticationService {
-  constructor(private http: HttpClient, private sharedServ: SharedService) {}
 
-  public login(body: any) {
-    return this.http.post(environment.baseUrl + 'login', {
-      ...body,
-    });
+  auth: Auth = getAuth();
+
+  constructor(private http: HttpClient) {}
+
+  public login_using_password(body: signIn): Observable<any> {
+    return from(
+      signInWithEmailAndPassword(this.auth, body.email, body.password)
+    );
+  }
+
+  public register(body: signIn): Observable<any> {
+    return from(
+      createUserWithEmailAndPassword(this.auth, body.email, body.password)
+    );
+  }
+
+  public login_using_github() {
+    const githubAuth: GithubAuthProvider = new GithubAuthProvider();
+
+    return from(signInWithPopup(this.auth, githubAuth));
+  }
+
+  public login_using_google(): Observable<any> {
+    const googleAuth: GoogleAuthProvider = new GoogleAuthProvider();
+
+    return from(signInWithPopup(this.auth, googleAuth));
   }
 
   public forgot_password_email(body: any) {
     return this.http.post(environment.baseUrl + 'reset_password', body);
   }
 
-  public register(body: any) {
-    return this.http.post(environment.baseUrl + 'register', {
-      ...body,
-      fax: '',
-      postal_code: '',
-      title: ' ',
-      is_active: false,
-      birth_date: '',
-      user_img: '',
-      role: '63e4f7d9deb5a344f34734f5',
-    });
-  }
-
   public confirm_user(token: string) {
     return this.http.get(environment.baseUrl + 'confirm/' + token);
   }
 
-  public get_user_by_token(token: string | null) {
-    return this.http.get(environment.baseUrl + 'userlogin/' + token);
-  }
-
-  public get_organizations() {
-    return this.sharedServ.get_organizations();
+  // I'm going to change this later.
+  public get_organizations(): Observable<string[]> {
+    return of(['ORG#1', 'ORG#2', 'ORG#3', 'ORG#4']);
   }
 }
+
+type signIn = {
+  email: string;
+  password: string;
+};

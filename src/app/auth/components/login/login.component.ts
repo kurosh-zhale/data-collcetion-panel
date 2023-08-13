@@ -3,8 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
 import { unsubscribe } from 'src/app/shared/utils/unsubscriber';
-import { Subscription } from 'rxjs';
+import { Observer, Subscription } from 'rxjs';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { GithubAuthProvider, GoogleAuthProvider } from '@angular/fire/auth';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -38,15 +39,6 @@ export class LoginComponent implements OnInit {
     unsubscribe(this.subscriptions);
   }
 
-  private add_validators() {
-    this.login_form.get('username')?.addValidators([Validators.required]);
-    this.login_form
-      .get('password')
-      ?.addValidators([Validators.required, Validators.minLength(10)]);
-    this.login_form.get('username')?.updateValueAndValidity();
-    this.login_form.get('password')?.updateValueAndValidity();
-  }
-
   private route_to_dashboard() {
     this.router.navigate(['../dashboard']);
   }
@@ -55,23 +47,46 @@ export class LoginComponent implements OnInit {
     this.sharedServ.set_token(token).then(() => this.route_to_dashboard());
   }
 
-  private login() {
-    let subscription = this.authServ
-      .login({
+  private login_with_password() {
+    let subscription: Subscription = this.authServ
+      .login_using_password({
         password: this.login_form.value.password,
         email: this.login_form.value.username,
       })
-      .subscribe({
-        next() {
-          console.log(this);
-        },
-        error(err) {},
-      });
+      .subscribe({next:(res) => this.set_token(res?.user?.accessToken)});
 
     this.subscriptions.push(subscription);
   }
 
-  public submit() {
-    this.login();
+  private loging_with_google() {
+    let subscribtion: Subscription = this.authServ
+      .login_using_google()
+      .subscribe({next:(res) => {
+        const credential = GoogleAuthProvider.credentialFromResult(res);
+        if (credential?.accessToken) this.set_token(credential?.accessToken);
+      }});
+
+    this.subscriptions.push(subscribtion);
+  }
+
+  private login_with_github() {
+    let subscribtion: Subscription = this.authServ
+      .login_using_github()
+      .subscribe({next:(res)=>{
+        const credential = GithubAuthProvider.credentialFromResult(res);
+        if(credential?.accessToken) this.set_token(credential?.accessToken);
+      }});
+
+    this.subscriptions.push(subscribtion);
+  }
+
+  public submit(mode: 'password' | 'google' | 'github') {
+    if (mode === 'password') {
+      this.login_with_password();
+    } else if (mode === 'google') {
+      this.loging_with_google();
+    } else if (mode === 'github') {
+      this.login_with_github();
+    }
   }
 }

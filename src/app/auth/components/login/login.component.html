@@ -5,7 +5,7 @@
 <form
   class="mt-5 row-start-3 gap-3 row-end-auto col-span-12 grid grid-cols-6"
   [formGroup]="login_form"
-  (ngSubmit)="submit()"
+  (ngSubmit)="submit('password')"
 >
   <fieldset class="col-span-6 row-span-2">
     <input
@@ -65,10 +65,12 @@
   <costume-button
     icon="../../../../assets/images/icons/google_PNG19635.png"
     class="col-span-1 laptop:row-start-6 desktop:row-start-6 mobile:col-span-6"
+    (click)="submit('google')"
   ></costume-button>
   <costume-button
     icon="../../../../assets/images/icons/GitHub-Symbol.png"
     class="col-span-1 laptop:row-start-6 desktop:row-start-6 mobile:col-span-6"
+    (click)="submit('github')"
   ></costume-button>
   <div
     class="col-start-2 col-end-6 mobile:col-start-1 mobile:col-end-7 mobile:w-full text-center mt-5"

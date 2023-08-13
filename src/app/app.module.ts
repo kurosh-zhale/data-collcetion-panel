@@ -1,13 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment.prod';
-
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { Auth, getAuth, provideAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,8 +14,7 @@ import { environment } from 'src/environments/environment.prod';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
   ],
   providers: [],
   bootstrap: [AppComponent],
