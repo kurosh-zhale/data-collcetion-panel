@@ -48,7 +48,6 @@ export class LayoutComponent {
   private change_background(mode: boolean = true) {
     let i: number = Math.floor(Math.random() * 10);
     if (i > 5 || i === 0) i = 1;
-    console.log(i);
 
     this.renderer.addClass(this.container.nativeElement, `background-${i}`);
     const Interval = setInterval(() => {

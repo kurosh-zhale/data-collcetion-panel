@@ -27,7 +27,6 @@ export class ButtonComponent implements OnInit {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     this.disable();
-    console.log(this.icon);
   }
 
   public set_style_on_mouse_event(event?: string): void {
