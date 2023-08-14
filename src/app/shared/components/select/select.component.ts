@@ -6,7 +6,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./select.component.scss'],
 })
 export class SelectComponent implements OnInit {
-  @Input('data-list') dataList: { name: string; value: any }[] | null = [];
+  @Input('data-list') data: any[] = [];
+  @Input('icon') icon: string | undefined;
+  public dataList: {
+    name: string;
+    value: number;
+    icon: string | undefined;
+  }[] = [];
   @Input('place-holder') placeHolder: string = '';
 
   @Output('onSelect') selectEvent: EventEmitter<any> = new EventEmitter<any>();
@@ -19,10 +25,32 @@ export class SelectComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.map_data();
+  }
 
   onFocus() {
     this.selected = !this.selected;
+  }
+
+  private map_data() {
+    this.data.map(
+      (data: string | number | boolean | null | undefined, index: number) => {
+        if (data) {
+          const remaped_data: {
+            name: string;
+            value: number;
+            icon: string | undefined;
+          } = {
+            name: data.toString(),
+            value: index,
+            icon: this.icon,
+          };
+
+          this.dataList.push(remaped_data);
+        }
+      }
+    );
   }
 
   onSelect(value: { name: string; value: any }) {

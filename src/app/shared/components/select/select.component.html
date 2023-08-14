@@ -31,6 +31,9 @@
       [ngClass]="selectedValue === data.value ? 'bg-gray-100' : 'visible'"
       (click)="onSelect(data)"
     >
+      <span class="icon mr-2" *ngIf="data.icon">
+        <img [src]="data.icon" alt="" width="35" />
+      </span>
       <span class="text-dark text-md self-center ml-3">
         {{ data.name }}
       </span>
