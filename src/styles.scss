@@ -146,7 +146,7 @@ input select {
 .error {
   color: var(--light-accent-secondary);
   transition: all 250ms ease-out;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .text-light {
@@ -180,6 +180,9 @@ input select {
   box-shadow: 0px 0px 10px $color;
   color: $text_color;
   background-color: $color;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 500px;
 }
 
 div.card-light {
@@ -197,3 +200,21 @@ div.card-dark {
   @include card(var(--dark), var(--light));
 }
 
+div.card-light::-webkit-scrollbar,
+div.card-dark::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  border: 1px transparent solid;
+  border-radius: 15px;
+  position: relative;
+  background-color: var(--light);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--shadow-light);
+  border: 1px transparent solid;
+  border-radius: 15px;
+}
