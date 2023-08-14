@@ -9,7 +9,7 @@
       class="place-holder text-md"
       [ngClass]="selectedValue ? 'text-dark' : 'text-grey'"
     >
-      {{ selectedValue ? selectedName : placeHolder }}
+      {{ selectedValue || selectedValue === 0 ? selectedName : placeHolder }}
     </span>
     <span class="arrow" [ngClass]="selected ? 'visible' : 'rotate-180'"
       ><img
@@ -19,24 +19,25 @@
     /></span>
   </div>
   <div
-    class="min-w-[150px] max-h-[163px] w-max overflow-y-auto flex flex-col bg-white rounded-xl p-3 relative bottom-8 z-10 transition-all"
-    [ngClass]="
-      selected ? 'border-[2px] border-gray-100' : 'invisible opacity-0'
-    "
+    class="absolute left-0 top-0 w-full h-full bg-transparent"
     *ngIf="selected"
+    (click)="onFocus()"
   >
     <div
-      class="text-dark text-md w-full h-full hover:bg-gray-100 border-gray-600 cursor-pointer transition-all min-h-[45px] flex"
-      *ngFor="let data of dataList"
-      [ngClass]="selectedValue === data.value ? 'bg-gray-100' : 'visible'"
-      (click)="onSelect(data)"
+      #select_box
+      class="min-w-[150px] max-h-[163px] max-w-sm overflow-x-hidden flex flex-col bg-white rounded-xl p-3 absolute z-10 transition-all border-[2px] border-gray-100"
+      *ngIf="selected"
     >
-      <span class="icon mr-2" *ngIf="data.icon">
-        <img [src]="data.icon" alt="" width="35" />
-      </span>
-      <span class="text-dark text-md self-center ml-3">
-        {{ data.name }}
-      </span>
+      <div
+        class="text-dark text-md w-full h-full hover:bg-gray-100 border-gray-600 cursor-pointer transition-all min-h-[45px] flex"
+        *ngFor="let data of dataList"
+        [ngClass]="selectedValue === data.value ? 'bg-gray-100' : 'visible'"
+        (click)="onSelect(data)"
+      >
+        <span class="text-dark text-md self-center ml-3">
+          {{ data.name }}
+        </span>
+      </div>
     </div>
   </div>
 </div>
