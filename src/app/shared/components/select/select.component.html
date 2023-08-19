@@ -7,7 +7,9 @@
   >
     <span
       class="place-holder text-md"
-      [ngClass]="selectedValue ? 'text-dark' : 'text-grey'"
+      [ngClass]="
+        selectedValue || selectedValue === 0 ? 'text-dark' : 'text-grey'
+      "
     >
       {{ selectedValue || selectedValue === 0 ? selectedName : placeHolder }}
     </span>
