@@ -1,7 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
-import { Router } from '@angular/router';
+import { unsubscribe } from 'src/app/shared/utils/unsubscriber';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-forgot-password',
@@ -9,29 +10,38 @@ import { Router } from '@angular/router';
   styleUrls: ['./forgot-password.component.scss'],
 })
 export class ForgotPasswordComponent implements OnInit {
-  forgot_password_form = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  private subscriptions:Subscription[] = [];
+  public forgot_password_form!: FormControl;
+  public mobile: boolean = window.innerWidth < 420;
 
-  public mobile:boolean = window.innerWidth < 420;
+  constructor(private authServ: AuthenticationService) {}
 
-  constructor(
-    private authServ: AuthenticationService,
-    private router: Router
-  ) {}
+  ngOnInit(): void {
+    this.forgot_password_form = new FormControl<string>('', [
+      Validators.required,
+      Validators.email,
+    ]);
+  }
 
-  ngOnInit(): void {}
-
-  public changeForm(form: string): void {
-    this.router.navigate([`../${form}`]);
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    unsubscribe(this.subscriptions);
   }
 
   public sendEmail() {
-    this.authServ
-      .forgot_password_email({
-        email: this.forgot_password_form.value,
-      })
-      .subscribe();
+    let subscription:Subscription = this.authServ
+      .forgot_password_email(this.forgot_password_form.value)
+      .subscribe({
+        next:()=>{
+          alert('email sent');
+        },
+
+        error(err){
+          throw Error(err);
+        }
+      });
+    
+    this.subscriptions.push(subscription);
   }
 }

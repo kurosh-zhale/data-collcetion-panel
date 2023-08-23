@@ -17,7 +17,7 @@
         placeholder="first name*"
       />
       <span
-        class="text-error ml-5"
+        class="error ml-5 mt-2"
         *ngIf="registeration_form.get('first_name')?.hasError('required')"
         >please enter your first name</span
       >
@@ -30,7 +30,7 @@
         placeholder="last name*"
       />
       <span
-        class="text-error ml-5"
+        class="error ml-5 mt-2"
         *ngIf="registeration_form.get('last_name')?.hasError('required')"
         >please enter your last name</span
       >
@@ -43,7 +43,7 @@
         placeholder="username*"
       />
       <span
-        class="text-error ml-5"
+        class="error ml-5 mt-2"
         *ngIf="registeration_form.get('username')?.hasError('required')"
       >
         please enter your username
@@ -58,7 +58,7 @@
         placeholder="email*"
       />
       <span
-        class="text-error ml-5"
+        class="error ml-5 mt-2"
         *ngIf="registeration_form.get('email')?.hasError('required')"
       >
         please enter a valid email
@@ -71,18 +71,14 @@
         class="input w-full"
         placeholder="password*"
       />
-      <span
-        class="text-error ml-5"
-        *ngIf="registeration_form.get('password')?.hasError('required')"
-      >
-        please enter your password
-      </span>
-      <span
-        class="text-error ml-5"
-        *ngIf="registeration_form.get('password')?.hasError('minLength')"
-      >
-        password is too short
-      </span>
+      <div class="error ml-5 mt-2">
+        <span *ngIf="registeration_form.get('password')?.hasError('required')">
+          please enter your password
+        </span>
+        <span *ngIf="registeration_form.get('password')?.hasError('minLength')">
+          password is too short
+        </span>
+      </div>
     </fieldset>
     <fieldset class="col-span-full">
       <input
@@ -91,25 +87,30 @@
         class="input w-full"
         placeholder="confirm password*"
       />
-      <span
-        class="text-error ml-5"
-        *ngIf="registeration_form.get('confirm_password')?.hasError('required')"
-      >
-        please confirm your password
-      </span>
-      <span
-        class="text-error ml-5"
-        *ngIf="
-          registeration_form.get('confirm_password')?.hasError('Confirmation')
-        "
-      >
-        password does <b>not</b> match
-      </span>
+      <div class="error ml-5 mt-2">
+        <span
+          *ngIf="
+            registeration_form.get('confirm_password')?.hasError('required')
+          "
+        >
+          please confirm your password
+        </span>
+        <span
+          *ngIf="
+            registeration_form
+              .get('confirm_password')
+              ?.hasError('Confirmation') &&
+            !registeration_form.get('confirm_password')?.hasError('required')
+          "
+        >
+          password does <b>not</b> match
+        </span>
+      </div>
     </fieldset>
     <fieldset class="col-span-4 mobile:col-span-full">
       <app-select
         [data-list]="organizations"
-        place-holder="organization*"
+        place-holder="organization"
         role="button"
         (onSelect)="registeration_form.get('organization')?.setValue($event)"
       ></app-select>
@@ -121,14 +122,11 @@
       </span>
     </fieldset>
     <app-select
-      [data-list]="[
-        { name: 'Male', value: 'Male' },
-        { name: 'Femail', value: 'Femail' },
-        { name: 'Diverse', value: 'Diverse' }
-      ]"
+      [data-list]="['Male', 'Female', 'Diverse']"
       place-holder="gender"
       class="col-span-2 mobile:col-span-5"
       role="button"
+      [index_value]="true"
       (onSelect)="registeration_form.get('gender')?.setValue($event)"
     ></app-select>
     <input
@@ -140,15 +138,27 @@
     <costume-button
       title="register"
       type="submit"
-      class="col-end-7 col-start-9 mobile:col-start-8 mobile:col-end-10 row-start-7 mobile:row-start-[10]"
+      class="col-end-7 col-start-9 mobile:col-start-6 mobile:col-end-11 row-start-7 mobile:row-start-[10]"
+      (click)="submitform()"
+      [disabled]="!registeration_form.valid"
     >
     </costume-button>
     <costume-button
       type="reset"
       title="cancel"
-      class="col-start-5 col-end-7 mobile:col-start-5 mobile:col-end-7 row-start-7 mobile:row-start-[10]"
+      class="col-start-5 col-end-7 mobile:col-start-1 mobile:col-end-6 row-start-7 mobile:row-start-[10]"
     >
     </costume-button>
+    <costume-button
+      icon="../../../../assets/images/icons/google_PNG19635.png"
+      class="col-span-2 row-start-7 mobile:row-start-[11] mobile:col-span-10"
+      (click)="submitform('google')"
+    ></costume-button>
+    <costume-button
+      icon="../../../../assets/images/icons/GitHub-Symbol.png"
+      class="col-span-2 row-start-7 mobile:row-start-[12] mobile:col-span-10"
+      (click)="submitform('github')"
+    ></costume-button>
   </form>
   <span class="text-md dark text-center mt-3 mobile:text-xs mobile:mt-8"
     >Already have an account?

@@ -5,7 +5,12 @@ import { Router } from '@angular/router';
 import { unsubscribe } from 'src/app/shared/utils/unsubscriber';
 import { Observer, Subscription } from 'rxjs';
 import { SharedService } from 'src/app/shared/services/shared.service';
-import { GithubAuthProvider, GoogleAuthProvider } from '@angular/fire/auth';
+import {
+  EmailAuthProvider,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  UserCredential,
+} from '@angular/fire/auth';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -28,7 +33,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.login_form = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required,Validators.min(10)]),
       remember_me: new FormControl(false),
     });
   }
@@ -53,7 +58,11 @@ export class LoginComponent implements OnInit {
         password: this.login_form.value.password,
         email: this.login_form.value.username,
       })
-      .subscribe({next:(res) => this.set_token(res?.user?.accessToken)});
+      .subscribe({
+        next: (userCredential: UserCredential) => {
+          this.set_token(userCredential.user.uid);
+        },
+      });
 
     this.subscriptions.push(subscription);
   }
@@ -61,10 +70,12 @@ export class LoginComponent implements OnInit {
   private loging_with_google() {
     let subscribtion: Subscription = this.authServ
       .login_using_google()
-      .subscribe({next:(res) => {
-        const credential = GoogleAuthProvider.credentialFromResult(res);
-        if (credential?.accessToken) this.set_token(credential?.accessToken);
-      }});
+      .subscribe({
+        next: (res) => {
+          const credential = GoogleAuthProvider.credentialFromResult(res);
+          if (credential?.accessToken) this.set_token(credential.accessToken);
+        },
+      });
 
     this.subscriptions.push(subscribtion);
   }
@@ -72,10 +83,12 @@ export class LoginComponent implements OnInit {
   private login_with_github() {
     let subscribtion: Subscription = this.authServ
       .login_using_github()
-      .subscribe({next:(res)=>{
-        const credential = GithubAuthProvider.credentialFromResult(res);
-        if(credential?.accessToken) this.set_token(credential?.accessToken);
-      }});
+      .subscribe({
+        next: (res) => {
+          const credential = GithubAuthProvider.credentialFromResult(res);
+          if (credential?.accessToken) this.set_token(credential.accessToken);
+        },
+      });
 
     this.subscriptions.push(subscribtion);
   }

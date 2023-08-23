@@ -20,9 +20,9 @@ export class SelectComponent implements OnInit {
     | undefined;
   @Input('data-list') public data: Data[] | DataObject[] = [];
   @Input('place-holder') public placeHolder: string = 'select';
+  @Input('index_value') public index_value: boolean = true;
   @Output('onSelect') public selectEvent: EventEmitter<any> =
     new EventEmitter<any>();
-  private index_value: boolean = true;
   public dataList: DataObject[] = [];
   public selected = false;
   public selectedValue: Data | undefined;

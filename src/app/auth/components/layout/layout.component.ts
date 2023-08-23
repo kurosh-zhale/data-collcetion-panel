@@ -66,6 +66,9 @@ export class LayoutComponent {
 
   private set_router() {
     switch (this.router.url.split('/')[2]) {
+      default:
+        this.route_link = 'login';
+        break;
       case 'login':
         this.route_link = 'register';
         break;

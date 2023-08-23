@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, from, of } from 'rxjs';
@@ -10,41 +10,74 @@ import {
   getAuth,
   Auth,
   signInWithPopup,
+  UserCredential,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  updatePassword,
+  confirmPasswordReset,
+  verifyPasswordResetCode,
 } from '@angular/fire/auth';
+import {
+  getFirestore,
+  Firestore,
+  doc,
+  setDoc,
+  DocumentData,
+} from '@angular/fire/firestore';
+import { UserProfile } from 'src/app/shared/interfaces/user.interface';
+
 @Injectable()
 export class AuthenticationService {
+  private db: Firestore = inject(Firestore);
 
-  auth: Auth = getAuth();
+  private auth: Auth = getAuth();
 
   constructor(private http: HttpClient) {}
 
-  public login_using_password(body: signIn): Observable<any> {
+  public login_using_password(body: {
+    email: string;
+    password: string;
+  }): Observable<UserCredential> {
     return from(
       signInWithEmailAndPassword(this.auth, body.email, body.password)
     );
   }
 
-  public register(body: signIn): Observable<any> {
+  public add_user(body: UserProfile): void {
+    if (this.auth.currentUser)
+      setDoc(doc(this.db, 'users', this.auth.currentUser.uid), body);
+  }
+
+  public register(body: UserProfile): Observable<void> {
     return from(
-      createUserWithEmailAndPassword(this.auth, body.email, body.password)
+      createUserWithEmailAndPassword(this.auth, body.email, body.password).then(
+        () => {
+          if (this.auth.currentUser) {
+            sendEmailVerification(this.auth.currentUser);
+            this.add_user(body);
+          }
+        }
+      )
     );
   }
 
-  public login_using_github() {
+  public login_using_github(): Observable<UserCredential> {
     const githubAuth: GithubAuthProvider = new GithubAuthProvider();
 
     return from(signInWithPopup(this.auth, githubAuth));
   }
 
-  public login_using_google(): Observable<any> {
+  public login_using_google(): Observable<UserCredential> {
     const googleAuth: GoogleAuthProvider = new GoogleAuthProvider();
 
     return from(signInWithPopup(this.auth, googleAuth));
   }
 
-  public forgot_password_email(body: any) {
-    return this.http.post(environment.baseUrl + 'reset_password', body);
+  public forgot_password_email(email: string): Observable<void> {
+    return from(sendPasswordResetEmail(this.auth, email));
   }
+
+  public reset_password(new_password: string) {}
 
   public confirm_user(token: string) {
     return this.http.get(environment.baseUrl + 'confirm/' + token);
@@ -55,8 +88,3 @@ export class AuthenticationService {
     return of(['ORG#1', 'ORG#2', 'ORG#3', 'ORG#4']);
   }
 }
-
-type signIn = {
-  email: string;
-  password: string;
-};
