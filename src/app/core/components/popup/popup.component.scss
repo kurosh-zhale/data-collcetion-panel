@@ -1,0 +1,81 @@
+@keyframes appear {
+  0% {
+    top: 10px;
+    opacity: 0%;
+    visibility: none;
+  }
+  
+  10%{
+    visibility: visible;
+  }
+
+  50% {
+    top: 5px;
+    opacity: 50%;
+  }
+
+  100% {
+    top: 0px;
+    opacity: 100%;
+  }
+}
+
+@keyframes disappear {
+  0% {
+    bottom: 0px;
+    opacity: 100%;
+    visibility: visible;
+  }
+
+  50% {
+    bottom: 5px;
+    opacity: 50%;
+  }
+
+  100% {
+    bottom: 10px;
+    opacity: 0%;
+    visibility: none;
+  }
+}
+
+@keyframes timer_animation {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+.timer {
+  background-color: var(--light);
+  height: 3px;
+  width: 0px;
+  animation: timer_animation 5s linear 350ms 1 forwards;
+}
+
+.appear {
+  animation: appear 150ms ease-in-out 0s 1 forwards;
+}
+
+.disappear {
+  animation: disappear 150ms ease-in-out 0s 1 forwards;
+}
+
+.success {
+  background-color: var(--light-primary);
+}
+
+.warn {
+  background-color: var(--light-accent-primary);
+}
+
+.error {
+  background-color: var(--light-accent-secondary);
+}
+
+.info {
+  background-color: var(--light-secondary);
+}

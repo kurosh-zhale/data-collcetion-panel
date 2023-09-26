@@ -1,16 +1,16 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
 import { unsubscribe } from 'src/app/shared/utils/unsubscriber';
-import { Observer, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import {
-  EmailAuthProvider,
   GithubAuthProvider,
   GoogleAuthProvider,
   UserCredential,
 } from '@angular/fire/auth';
+import { PopupService } from 'src/app/core/services/popup.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
   form_is_invalid = false;
 
   private subscriptions: Subscription[] = [];
+
+  private popup: PopupService = inject(PopupService);
 
   public mobile: boolean = window.innerWidth < 420;
 
@@ -33,7 +35,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.login_form = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required,Validators.min(10)]),
+      password: new FormControl('', [Validators.required, Validators.min(10)]),
       remember_me: new FormControl(false),
     });
   }
@@ -62,6 +64,16 @@ export class LoginComponent implements OnInit {
         next: (userCredential: UserCredential) => {
           this.set_token(userCredential.user.uid);
         },
+
+        complete: () => {
+          this.popup.open_popup('Login successful 😉', 'success');
+          this.popup.open_popup('test🤔🤔','info');
+
+        },
+
+        error: (err) => {
+          this.popup.open_popup(err, 'error');
+        },
       });
 
     this.subscriptions.push(subscription);
@@ -75,6 +87,14 @@ export class LoginComponent implements OnInit {
           const credential = GoogleAuthProvider.credentialFromResult(res);
           if (credential?.accessToken) this.set_token(credential.accessToken);
         },
+
+        complete: () => {
+          this.popup.open_popup('Login successful 😉', 'success');
+        },
+
+        error: (err) => {
+          this.popup.open_popup(err, 'error');
+        },
       });
 
     this.subscriptions.push(subscribtion);
@@ -87,6 +107,14 @@ export class LoginComponent implements OnInit {
         next: (res) => {
           const credential = GithubAuthProvider.credentialFromResult(res);
           if (credential?.accessToken) this.set_token(credential.accessToken);
+        },
+
+        complete: () => {
+          this.popup.open_popup('Login successful 😉', 'success');
+        },
+
+        error: (err) => {
+          this.popup.open_popup(err, 'error');
         },
       });
 

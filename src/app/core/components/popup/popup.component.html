@@ -1,0 +1,31 @@
+<div
+  class="w-[35vw] max-w-md h-[100vh] flex flex-col justify-end gap-3 p-5 absolute top-0 left-0 pointer-events-none z-10"
+>
+  <ng-container *ngFor="let popup of popup_list">
+    <div
+      #popup_container
+      class="border-transparent rounded-xl overflow-hidden shadow-md flex flex-col relative transition-all appear"
+      id="{{ popup.id }}"
+      [ngClass]="{
+        success: popup.type === 'success',
+        warn: popup.type === 'warn',
+        error: popup.type === 'error',
+        info: popup.type === 'info'
+      }"
+    >
+      <div
+        class="flex justify-between p-2 relative pointer-events-auto w-full max-w-sm mobile:max-w-xs h-16 my-auto"
+      >
+        <span class="light font-semibold my-auto">{{ popup.message }}</span>
+        <img
+          src="../../../../assets/images/icons/cancel-close-delete-svgrepo-com.svg"
+          width="25"
+          alt="close"
+          class="text-sm transition-all cursor-pointer"
+          (click)="close_popup(popup)"
+        />
+      </div>
+      <div *ngIf="popup.options?.autoClose" class="timer"></div>
+    </div>
+  </ng-container>
+</div>

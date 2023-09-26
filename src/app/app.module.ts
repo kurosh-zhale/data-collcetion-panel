@@ -6,11 +6,8 @@ import { AppComponent } from './app.component';
 
 import { environment } from 'src/environments/environment.prod';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import {
-  provideFirestore,
-  getFirestore,
-  Firestore,
-} from '@angular/fire/firestore';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +15,7 @@ import {
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    CoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
   ],

@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { switchMap } from 'rxjs';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { environment } from 'src/environments/environment';
+import { Auth, getAuth, signOut } from '@angular/fire/auth';
 
 @Injectable()
 export class DashboardService {
+  private auth: Auth = getAuth();
+
   constructor(private http: HttpClient, private sharedServ: SharedService) {}
 
   get_dataitems() {
@@ -16,8 +18,7 @@ export class DashboardService {
     return this.sharedServ.get_projects();
   }
 
-
   async logout() {
-    localStorage.removeItem('TOKEN');
+    signOut(this.auth).then(() => localStorage.removeItem('TOKEN'));
   }
 }
