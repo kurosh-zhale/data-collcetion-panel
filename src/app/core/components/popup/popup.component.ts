@@ -1,22 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  OnInit,
-  Renderer2,
-  ViewChild,
-  ViewChildren,
-  ChangeDetectorRef,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PopupService } from '../../services/popup.service';
-import {
-  map,
-  BehaviorSubject,
-  Observable,
-  of,
-  findIndex,
-  Subscription,
-} from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Popup } from '../../models/popup.model';
 import { NavigationStart, Router } from '@angular/router';
 import { unsubscribe } from 'src/app/shared/utils/unsubscriber';
@@ -34,11 +18,7 @@ export class PopupComponent implements OnInit {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(
-    public popupServ: PopupService,
-    private renderer: Renderer2,
-    private router: Router
-  ) {}
+  constructor(public popupServ: PopupService, private router: Router) {}
 
   ngOnInit(): void {
     this.subscribeToPopups();

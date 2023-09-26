@@ -12,7 +12,7 @@ export class Popup {
   state:'appear'|'disappear' = "appear";
   message?: string;
   type?: PopupType;
-  options?: PopupOptions = {
+  options?: Partial<PopupOptions> = {
     autoClose: true,
     keepAfterRouteChange: true,
   };

@@ -14,7 +14,7 @@ export class PopupService {
 
   constructor() {}
 
-  public open_popup(title: string, mode: PopupType, options?: PopupOptions) {
+  public open_popup(title: string, mode: PopupType, options?: Partial<PopupOptions>) {
     if (options) {
       this.popup$.next(
         new Popup({ message: title, type: mode, options: options })
