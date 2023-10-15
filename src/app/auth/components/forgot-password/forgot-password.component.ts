@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { unsubscribe } from 'src/app/shared/utils/unsubscriber';
 import { Subscription } from 'rxjs';
 import { PopupService } from 'src/app/core/services/popup.service';
+import { authErrorHandler } from '../../utils/error-handler';
 
 @Component({
   selector: 'app-forgot-password',
@@ -44,7 +45,9 @@ export class ForgotPasswordComponent implements OnInit {
         },
 
         error: (err) => {
-          this.popup.open_popup(err, 'error', { autoClose: false });
+          const error:string = authErrorHandler(err);
+
+          this.popup.open_popup(error, 'error', { autoClose: false });
         },
       });
 

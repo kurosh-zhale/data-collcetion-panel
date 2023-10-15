@@ -11,6 +11,7 @@ import {
   UserCredential,
 } from '@angular/fire/auth';
 import { PopupService } from 'src/app/core/services/popup.service';
+import { authErrorHandler } from '../../utils/error-handler';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -70,7 +71,9 @@ export class LoginComponent implements OnInit {
         },
 
         error: (err) => {
-          this.popup.open_popup(err, 'error');
+          const error:string = authErrorHandler(err);
+
+          this.popup.open_popup(error, 'error');
         },
       });
 
@@ -91,7 +94,9 @@ export class LoginComponent implements OnInit {
         },
 
         error: (err) => {
-          this.popup.open_popup(err, 'error');
+          const error:string = authErrorHandler(err);
+
+          this.popup.open_popup(error, 'error');
         },
       });
 
@@ -112,7 +117,9 @@ export class LoginComponent implements OnInit {
         },
 
         error: (err) => {
-          this.popup.open_popup(err, 'error');
+          const error:string = authErrorHandler(err);
+
+          this.popup.open_popup(error, 'error');
         },
       });
 

@@ -6,6 +6,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { Subscription } from 'rxjs';
 import { unsubscribe } from 'src/app/shared/utils/unsubscriber';
 import { PopupService } from 'src/app/core/services/popup.service';
+import { authErrorHandler } from '../../utils/error-handler';
 
 @Component({
   selector: 'app-reset-password',
@@ -63,7 +64,9 @@ export class ResetPasswordComponent implements OnInit {
             },
 
             error: (err) => {
-              this.popup.open_popup(err, 'error', { autoClose: true });
+              const error:string = authErrorHandler(err);
+
+          this.popup.open_popup(error, 'error', { autoClose: false });
             },
           });
 

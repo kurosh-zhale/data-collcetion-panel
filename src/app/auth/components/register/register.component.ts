@@ -13,6 +13,7 @@ import {
 } from '@angular/fire/auth';
 import { UserProfile } from 'src/app/shared/interfaces/user.interface';
 import { PopupService } from 'src/app/core/services/popup.service';
+import { authErrorHandler } from '../../utils/error-handler';
 
 @Component({
   selector: 'app-register',
@@ -106,7 +107,9 @@ export class RegisterComponent implements OnInit {
       },
 
       error: (err) => {
-        this.popup.open_popup(err, 'error', { autoClose: false });
+        const error:string = authErrorHandler(err);
+
+          this.popup.open_popup(error, 'error', { autoClose: false });
       },
     });
 
@@ -131,7 +134,9 @@ export class RegisterComponent implements OnInit {
         },
 
         error: (err) => {
-          this.popup.open_popup(err, 'error', { autoClose: false });
+          const error:string = authErrorHandler(err);
+
+          this.popup.open_popup(error, 'error', { autoClose: false });
         },
       });
 
@@ -156,41 +161,14 @@ export class RegisterComponent implements OnInit {
         },
 
         error: (err) => {
-          this.popup.open_popup(err, 'error', { autoClose: false });
+          const error:string = authErrorHandler(err);
+
+          this.popup.open_popup(error, 'error', { autoClose: false });
         },
       });
 
     this.subscriptions.push(subscribtion);
   }
-
-  // async add_validators() {
-  //   this.registeration_form
-  //     .get('password')
-  //     ?.addValidators([Validators.required, Validators.minLength(10)]);
-  //   this.registeration_form.get('password')?.updateValueAndValidity();
-  //   this.registeration_form
-  //     .get('confirm_password')
-  //     ?.addValidators([Validators.required, PasswordConfirmation()]);
-  //   this.registeration_form.get('confirm_password')?.updateValueAndValidity();
-  //   this.registeration_form
-  //     .get('first_name')
-  //     ?.addValidators([Validators.required]);
-  //   this.registeration_form.get('first_name')?.updateValueAndValidity();
-  //   this.registeration_form
-  //     .get('last_name')
-  //     ?.addValidators([Validators.required]);
-  //   this.registeration_form.get('last_name')?.updateValueAndValidity();
-  //   this.registeration_form
-  //     .get('username')
-  //     ?.addValidators([Validators.required]);
-  //   this.registeration_form.get('username')?.updateValueAndValidity();
-  //   this.registeration_form.get('email')?.addValidators([Validators.required]);
-  //   this.registeration_form.get('email')?.updateValueAndValidity();
-  //   this.registeration_form
-  //     .get('organization')
-  //     ?.addValidators([Validators.required]);
-  //   this.registeration_form.get('organization')?.updateValueAndValidity();
-  // }
 
   submitform(mode: 'password' | 'google' | 'github' = 'password') {
     if (mode === 'password') {
