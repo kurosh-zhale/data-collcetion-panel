@@ -22,14 +22,14 @@ export class LoginComponent implements OnInit {
 
   private subscriptions: Subscription[] = [];
 
-  private popup: PopupService = inject(PopupService);
 
   public mobile: boolean = window.innerWidth < 420;
 
   constructor(
     private authServ: AuthenticationService,
     private sharedServ: SharedService,
-    private router: Router
+    private router: Router,
+    private popup: PopupService,
   ) {}
 
   ngOnInit(): void {
@@ -67,8 +67,6 @@ export class LoginComponent implements OnInit {
 
         complete: () => {
           this.popup.open_popup('Login successful 😉', 'success');
-          this.popup.open_popup('test🤔🤔','info');
-
         },
 
         error: (err) => {

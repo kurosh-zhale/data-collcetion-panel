@@ -12,6 +12,7 @@ import {
   UserCredential,
 } from '@angular/fire/auth';
 import { UserProfile } from 'src/app/shared/interfaces/user.interface';
+import { PopupService } from 'src/app/core/services/popup.service';
 
 @Component({
   selector: 'app-register',
@@ -28,7 +29,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     public authServ: AuthenticationService,
     private sharedServ: SharedService,
-    private router: Router
+    private router: Router,
+    private popup: PopupService
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +39,7 @@ export class RegisterComponent implements OnInit {
       last_name: new FormControl('', [Validators.required]),
       username: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required,Validators.min(10)]),
+      password: new FormControl('', [Validators.required, Validators.min(10)]),
       confirm_password: new FormControl('', [
         Validators.required,
         PasswordConfirmation(),
@@ -91,11 +93,20 @@ export class RegisterComponent implements OnInit {
 
     let subscribtion: Subscription = this.authServ.register(model).subscribe({
       next: () => {
-        alert('please verify your email');
+        this.popup.open_popup('Please verify your email', 'info', {
+          keepAfterRouteChange: false,
+        });
+      },
+
+      complete: () => {
+        this.popup.open_popup(
+          'You have successfully registered. Welcome to DATA COLLECTION',
+          'success'
+        );
       },
 
       error: (err) => {
-        throw Error(err);
+        this.popup.open_popup(err, 'error', { autoClose: false });
       },
     });
 
@@ -111,8 +122,16 @@ export class RegisterComponent implements OnInit {
             GoogleAuthProvider.credentialFromResult(userCredential);
           if (credential?.accessToken) this.set_token(credential.accessToken);
         },
+        
+        complete: () => {
+          this.popup.open_popup(
+            'You have successfully registered. Welcome to DATA COLLECTION',
+            'success'
+          );
+        },
+
         error: (err) => {
-          throw Error(err);
+          this.popup.open_popup(err, 'error', { autoClose: false });
         },
       });
 
@@ -128,8 +147,16 @@ export class RegisterComponent implements OnInit {
             GithubAuthProvider.credentialFromResult(userCredential);
           if (credential?.accessToken) this.set_token(credential.accessToken);
         },
+
+        complete: () => {
+          this.popup.open_popup(
+            'You have successfully registered. Welcome to DATA COLLECTION',
+            'success'
+          );
+        },
+
         error: (err) => {
-          throw Error(err);
+          this.popup.open_popup(err, 'error', { autoClose: false });
         },
       });
 

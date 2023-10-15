@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { unsubscribe } from 'src/app/shared/utils/unsubscriber';
 import { Subscription } from 'rxjs';
+import { PopupService } from 'src/app/core/services/popup.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -10,11 +11,14 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./forgot-password.component.scss'],
 })
 export class ForgotPasswordComponent implements OnInit {
-  private subscriptions:Subscription[] = [];
+  private subscriptions: Subscription[] = [];
   public forgot_password_form!: FormControl;
   public mobile: boolean = window.innerWidth < 420;
 
-  constructor(private authServ: AuthenticationService) {}
+  constructor(
+    private authServ: AuthenticationService,
+    private popup: PopupService
+  ) {}
 
   ngOnInit(): void {
     this.forgot_password_form = new FormControl<string>('', [
@@ -30,18 +34,20 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   public sendEmail() {
-    let subscription:Subscription = this.authServ
+    let subscription: Subscription = this.authServ
       .forgot_password_email(this.forgot_password_form.value)
       .subscribe({
-        next:()=>{
-          alert('email sent');
+        complete: () => {
+          this.popup.open_popup('Email sent', 'success', {
+            keepAfterRouteChange: false,
+          });
         },
 
-        error(err){
-          throw Error(err);
-        }
+        error: (err) => {
+          this.popup.open_popup(err, 'error', { autoClose: false });
+        },
       });
-    
+
     this.subscriptions.push(subscription);
   }
 }
