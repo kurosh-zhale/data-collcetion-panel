@@ -30,13 +30,13 @@ const routes: Routes = [
         component: ForgotPasswordComponent,
       },
       {
-        path:'verify-email',
-        component:VerifyEmailComponent
+        path: 'verify-email',
+        component: VerifyEmailComponent,
       },
       {
-        path:'reset-password',
-        component:ResetPasswordComponent
-      }
+        path: 'reset-password',
+        component: ResetPasswordComponent,
+      },
     ],
   },
 ];

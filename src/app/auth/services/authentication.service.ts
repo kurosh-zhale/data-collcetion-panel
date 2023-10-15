@@ -3,19 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, from, of } from 'rxjs';
 import {
-  GoogleAuthProvider,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  GithubAuthProvider,
   getAuth,
   Auth,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   signInWithPopup,
   UserCredential,
+  AuthCredential,
   sendEmailVerification,
   sendPasswordResetEmail,
   updatePassword,
   confirmPasswordReset,
   verifyPasswordResetCode,
+  User,
 } from '@angular/fire/auth';
 import {
   getFirestore,
@@ -77,7 +79,9 @@ export class AuthenticationService {
     return from(sendPasswordResetEmail(this.auth, email));
   }
 
-  public reset_password(new_password: string) {}
+  public reset_password(new_password: string, oobCode: string) {
+    return of(confirmPasswordReset(this.auth, oobCode, new_password));
+  }
 
   public confirm_user(token: string) {
     return this.http.get(environment.baseUrl + 'confirm/' + token);
