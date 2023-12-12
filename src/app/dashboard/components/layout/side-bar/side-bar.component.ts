@@ -10,23 +10,9 @@ import { DashboardService } from 'src/app/dashboard/services/dashboard.service';
 export class SideBarComponent implements OnInit {
   constructor(private router: Router, private dashServ: DashboardService) {}
 
-  extended: boolean = false;
-
   ngOnInit(): void {}
 
-  navigate(route: string) {
-    if (route === 'settings' || route === 'auth') {
-      this.router.navigate([route]);
-    } else {
-      this.router.navigate(['./dashboard/' + route]);
-    }
-  }
-
   logout() {
-    this.dashServ.logout().then(() => this.navigate('auth'));
-  }
-
-  extend() {
-    this.extended = !this.extended;
+    this.dashServ.logout().then(() => this.router.navigate(['../auth']));
   }
 }

@@ -1,101 +1,88 @@
-<div
-  class="w-80 transition-all bg-[var(--light)] h-full pt-3"
-  [ngClass]="extended ? '!w-[150px]' : 'visible'"
->
+<div class="w-80 transition-all bg-[var(--light)] h-full pt-3">
   <div class="h-full pb-5">
     <div class="flex flex-col justify-evenly items-center gap-5 h-full">
-      <img
-        src="../../../../assets/images/icons/menu.svg"
-        alt="menu"
-        class="cursor-pointer mb-3 mr-auto ml-3"
-        (click)="extend()"
-        width="28"
-      />
+      <span class="logo text-2xl text-center w-full">Data Collection</span>
       <div class="flex flex-col h-1/2 w-full mb-auto items-center">
         <div
-          class="cursor-pointer flex justify-start gap-5 w-full pl-3 hover:bg-[var(--light-secondary)] h-[40px]"
-          (click)="navigate('home')"
+          class="cursor-pointer flex justify-start gap-5 w-3/4 pl-10 hover:bg-[var(--shadow-light)] hover:bg-opacity-50 h-[60px] rounded-md transition-all"
+          [routerLink]="['./home']"
+          id="home"
+          routerLinkActive="!bg-[var(--shadow-light)] hover:!bg-opacity-100"
         >
           <img
             src="../../../../assets/images/icons/house-fill-svgrepo-com.svg"
             alt="home"
             width="28"
           />
-          <span *ngIf="extended" class="text-dark self-center font-semibold"
-            >Home</span
-          >
+          <span class="text-dark self-center font-semibold">Home</span>
         </div>
         <div
-          class="cursor-pointer flex justify-start gap-5 mt-8 w-full pl-3 hover:bg-[var(--light-secondary)] h-[40px]"
-          (click)="navigate('projects')"
+          class="cursor-pointer flex justify-start gap-5 mt-8 w-3/4 pl-10 hover:bg-[var(--shadow-light)] hover:bg-opacity-50 h-[60px] rounded-md transition-all"
+          [routerLink]="['./projects']"
+          routerLinkActive="!bg-[var(--shadow-light)] hover:!bg-opacity-100"
+          id="projects"
         >
           <img
             src="../../../../assets/images/icons/dashboard-svgrepo-com.svg"
             alt="projects"
             width="28"
           />
-          <span *ngIf="extended" class="text-dark font-semibold self-center"
-            >Projects</span
-          >
+          <span class="text-dark font-semibold self-center">Projects</span>
         </div>
         <div
-          class="cursor-pointer flex justify-start gap-5 mt-8 w-full pl-3 hover:bg-[var(--light-secondary)] h-[40px]"
-          (click)="navigate('logs')"
+          class="cursor-pointer flex justify-start gap-5 mt-8 w-3/4 pl-10 hover:bg-[var(--shadow-light)] hover:bg-opacity-50 h-[60px] rounded-md transition-all"
+          id="logs"
+          [routerLink]="['./logs']"
+          routerLinkActive="!bg-[var(--shadow-light)] hover:!bg-opacity-100"
         >
           <img
             src="../../../../assets/images/icons/book-1-svgrepo-com.svg"
             alt="logs"
             width="28"
           />
-          <span *ngIf="extended" class="text-dark font-semibold self-center"
-            >Logs</span
-          >
+          <span class="text-dark font-semibold self-center">Logs</span>
         </div>
         <div
-          class="cursor-pointer flex justify-start gap-5 mt-8 w-full pl-3 hover:bg-[var(--light-secondary)] h-[40px]"
-          (click)="navigate('search')"
+          class="cursor-pointer flex justify-start gap-5 mt-8 w-3/4 pl-10 hover:bg-[var(--shadow-light)] hover:bg-opacity-50 h-[60px] rounded-md transition-all"
+          [routerLink]="['./search']"
+          id="search"
+          routerLinkActive="!bg-[var(--shadow-light)] hover:!bg-opacity-100"
         >
           <img
             src="../../../../assets/images/icons/search-magnifying-glass-svgrepo-com.svg"
             alt="search"
             width="28"
           />
-          <span *ngIf="extended" class="text-dark font-semibold self-center"
-            >Search</span
-          >
+          <span class="text-dark font-semibold self-center">Search</span>
         </div>
         <div
-          class="cursor-pointer flex justify-start gap-5 mt-8 w-full pl-3 hover:bg-[var(--light-secondary)] h-[40px]"
-          (click)="navigate('pins')"
+          class="cursor-pointer flex justify-start gap-5 mt-8 w-3/4 pl-10 hover:bg-[var(--shadow-light)] hover:bg-opacity-50 h-[60px] rounded-md transition-all"
+          id="pins"
+          [routerLink]="['./pins']"
+          routerLinkActive="!bg-[var(--shadow-light)] hover:!bg-opacity-100"
         >
           <img
             src="../../../../assets/images/icons/like-svgrepo-com.svg"
             alt="pins"
             width="28"
           />
-          <span *ngIf="extended" class="text-dark font-semibold self-center"
-            >Pins</span
-          >
+          <span class="text-dark font-semibold self-center">Pins</span>
         </div>
       </div>
-      <div
-        class="flex flex-col items-center justify-between gap-y-5 w-full"
-      >
+      <div class="flex flex-col items-center justify-between gap-y-5 w-full">
         <div
-          class="cursor-pointer flex justify-start gap-5 w-full hover:bg-[var(--light-secondary)] h-[40px] pl-3"
-          (click)="navigate('settings')"
+          class="cursor-pointer flex justify-start gap-5 w-3/4 hover:bg-[var(--shadow-light)] hover:bg-opacity-50 h-[60px] rounded-md transition-all pl-5"
+          [routerLink]="['../settings']"
         >
           <img
             src="../../../../assets/images/icons/settings-ui-svgrepo-com.svg"
             alt="setting"
             width="28"
           />
-          <span *ngIf="extended" class="text-dark font-semibold self-center"
-            >Settings</span
-          >
+          <span class="text-dark font-semibold self-center">Settings</span>
         </div>
         <div
-          class="cursor-pointer flex justify-start gap-5 w-full hover:bg-[var(--light-secondary)] h-[40px] pl-3"
+          class="cursor-pointer flex justify-start gap-5 w-3/4 hover:bg-[var(--shadow-light)] hover:bg-opacity-50 h-[60px] rounded-md transition-all pl-5"
           (click)="logout()"
         >
           <img
@@ -103,11 +90,7 @@
             alt="setting"
             width="28"
           />
-          <span
-            *ngIf="extended"
-            class="text-dark font-semibold self-center w-full"
-            >Logout</span
-          >
+          <span class="text-dark font-semibold self-center w-3/4">Logout</span>
         </div>
       </div>
     </div>
