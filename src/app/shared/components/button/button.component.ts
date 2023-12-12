@@ -8,14 +8,13 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'costume-button',
+  selector: 'custom-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent implements OnInit {
   @Input() public type: 'submit' | 'reset' | 'button' = 'button';
   @Input() public disabled: boolean = false;
-  @Input() public title: string = '';
   @Input() public icon: null | string = null;
   @ViewChild('btn') private button!: ElementRef<HTMLButtonElement>;
 
@@ -46,7 +45,7 @@ export class ButtonComponent implements OnInit {
         case 'mouseleave':
           this.renderer.removeClass(this.button.nativeElement, 'mouseenter');
       }
-    } else {
+    } else if(event==='click') {
       this.renderer.addClass(this.button.nativeElement, 'disabled_animation');
       setTimeout(() => {
         this.renderer.removeClass(

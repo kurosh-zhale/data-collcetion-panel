@@ -49,29 +49,29 @@
       (onClick)="login_form.get('remember_me')?.setValue($event)"
     ></app-check-box>
   </fieldset>
-  <costume-button
+  <custom-button
     type="reset"
     class="col-start-3 col-end-5 mobile:col-span-3 mobile:mt-4"
-    title="cancel"
   >
-  </costume-button>
-  <costume-button
+    cancel
+  </custom-button>
+  <custom-button
     type="submit"
     class="col-start-5 col-end-7 mobile:col-span-3 mobile:mt-4"
-    title="sign in"
     [disabled]="login_form.invalid"
   >
-  </costume-button>
-  <costume-button
+    sign in
+  </custom-button>
+  <custom-button
     icon="../../../../assets/images/icons/google_PNG19635.png"
     class="col-span-1 laptop:row-start-6 desktop:row-start-6 mobile:col-span-6"
     (click)="submit('google')"
-  ></costume-button>
-  <costume-button
+  ></custom-button>
+  <custom-button
     icon="../../../../assets/images/icons/GitHub-Symbol.png"
     class="col-span-1 laptop:row-start-6 desktop:row-start-6 mobile:col-span-6"
     (click)="submit('github')"
-  ></costume-button>
+  ></custom-button>
   <div
     class="col-start-2 col-end-6 mobile:col-start-1 mobile:col-end-7 mobile:w-full text-center mt-5"
   >

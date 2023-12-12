@@ -1,29 +1,21 @@
-<button
-  [ngClass]="type"
-  [type]="type"
-  *ngIf="!disabled"
-  (mousedown)="set_style_on_mouse_event('mousedown')"
-  (mouseup)="set_style_on_mouse_event('mouseup')"
-  (mouseenter)="set_style_on_mouse_event('mouseenter')"
-  (mouseleave)="set_style_on_mouse_event('mouseleave')"
-  #btn
->
-  <span *ngIf="icon" [ngClass]="{ 'mr-1 -ml-3': title }">
-    <img [src]="icon" alt="" width="35" />
-  </span>
-  <span
-    [ngClass]="{
-      'mt-1': icon
-    }"
+  <button
+    [ngClass]="[type]"
+    [type]="type"
+    (mousedown)="set_style_on_mouse_event('mousedown')"
+    (mouseup)="set_style_on_mouse_event('mouseup')"
+    (mouseenter)="set_style_on_mouse_event('mouseenter')"
+    (mouseleave)="set_style_on_mouse_event('mouseleave')"
+    (click)="set_style_on_mouse_event('click')"
+    #btn
   >
-    {{ title }}
-  </span>
-</button>
-<button
-  class="disabled"
-  *ngIf="disabled"
-  (click)="set_style_on_mouse_event()"
-  #btn
->
-  {{ title }}
-</button>
+    <span *ngIf="icon">
+      <img [src]="icon" alt="" width="35" />
+      <ng-content
+        #content
+        [ngClass]="{
+          'mt-1 ml-1 -mr-3': icon
+        }"
+      ></ng-content>
+    </span>
+    <span *ngIf="!icon"><ng-content></ng-content></span>
+  </button>

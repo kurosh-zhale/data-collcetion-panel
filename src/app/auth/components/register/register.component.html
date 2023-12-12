@@ -135,30 +135,30 @@
       placeholder="phone"
       formControlName="phone"
     />
-    <costume-button
-      title="register"
+    <custom-button
       type="submit"
       class="col-end-7 col-start-9 mobile:col-start-6 mobile:col-end-11 row-start-7 mobile:row-start-[10]"
       (click)="submitform()"
       [disabled]="!registeration_form.valid"
     >
-    </costume-button>
-    <costume-button
+    register
+    </custom-button>
+    <custom-button
       type="reset"
-      title="cancel"
       class="col-start-5 col-end-7 mobile:col-start-1 mobile:col-end-6 row-start-7 mobile:row-start-[10]"
     >
-    </costume-button>
-    <costume-button
+    cancel
+    </custom-button>
+    <custom-button
       icon="../../../../assets/images/icons/google_PNG19635.png"
       class="col-span-2 row-start-7 mobile:row-start-[11] mobile:col-span-10"
       (click)="submitform('google')"
-    ></costume-button>
-    <costume-button
+    ></custom-button>
+    <custom-button
       icon="../../../../assets/images/icons/GitHub-Symbol.png"
       class="col-span-2 row-start-7 mobile:row-start-[12] mobile:col-span-10"
       (click)="submitform('github')"
-    ></costume-button>
+    ></custom-button>
   </form>
   <span class="text-md dark text-center mt-3 mobile:text-xs mobile:mt-8"
     >Already have an account?
