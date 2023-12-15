@@ -18,34 +18,11 @@ export class LogsComponent implements OnInit {
   constructor(private dashServ: DashboardService) {}
 
   ngOnInit(): void {
-    this.get_data();
   }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     unsubscribe(this.subscriptions);
-  }
-
-  get_data() {
-    let subscription = this.dashServ
-      .get_dataitems()
-      .pipe(
-        map(({ dataitems }: any, index) =>
-          dataitems.map(
-            ({ create_date, description, filename, modify_date }: any) => {
-              return {
-                create_date: new Date(create_date).toLocaleDateString(),
-                description,
-                filename,
-                modify_date: new Date(modify_date).toLocaleDateString(),
-              };
-            }
-          )
-        )
-      )
-      .subscribe((data) => this.dataList.next(data));
-
-      this.subscriptions.push(subscription);
   }
 }

@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedService } from './services/shared.service';
 import { ModalComponent } from './components/modal/modal.component';
 import { TableComponent } from './components/table/table.component';
-import { AddProjectComponent } from './components/shared-forms/add-project/add-project.component';
 import { ButtonComponent } from './components/button/button.component';
 import { DynamicComponentDirective } from '../shared/directives/dynamic-component.directive';
 
@@ -20,7 +19,6 @@ import { DynamicComponentDirective } from '../shared/directives/dynamic-componen
     ModalComponent,
     DynamicComponentDirective,
     TableComponent,
-    AddProjectComponent,
     ButtonComponent,
   ],
   imports: [
@@ -35,7 +33,6 @@ import { DynamicComponentDirective } from '../shared/directives/dynamic-componen
     PaginationComponent,
     ModalComponent,
     TableComponent,
-    AddProjectComponent,
     ButtonComponent,
     DynamicComponentDirective,
   ],

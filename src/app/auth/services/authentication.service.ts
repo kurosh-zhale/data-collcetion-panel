@@ -18,6 +18,7 @@ import {
   confirmPasswordReset,
   verifyPasswordResetCode,
   User,
+  signOut,
 } from '@angular/fire/auth';
 import {
   getFirestore,
@@ -81,6 +82,10 @@ export class AuthenticationService {
 
   public reset_password(new_password: string, oobCode: string) {
     return of(confirmPasswordReset(this.auth, oobCode, new_password));
+  }
+
+  public sign_out():Observable<void> {
+    return from(signOut(this.auth));
   }
 
   // I'm going to change this later.

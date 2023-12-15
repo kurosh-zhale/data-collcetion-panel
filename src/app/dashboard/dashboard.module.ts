@@ -7,7 +7,6 @@ import { SideBarComponent } from './components/layout/side-bar/side-bar.componen
 import { ToolBarComponent } from './components/layout/tool-bar/tool-bar.component';
 import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
-import { ProjectsComponent } from './components/projects/projects.component';
 import { PinsComponent } from './components/pins/pins.component';
 import { SharedModule } from '../shared/shared.module';
 import { LogsComponent } from './components/logs/logs.component';
@@ -22,7 +21,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     ToolBarComponent,
     HomeComponent,
     SearchComponent,
-    ProjectsComponent,
     PinsComponent,
     LogsComponent,
   ],
