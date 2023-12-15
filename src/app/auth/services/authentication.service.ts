@@ -83,10 +83,6 @@ export class AuthenticationService {
     return of(confirmPasswordReset(this.auth, oobCode, new_password));
   }
 
-  public confirm_user(token: string) {
-    return this.http.get(environment.baseUrl + 'confirm/' + token);
-  }
-
   // I'm going to change this later.
   public get_organizations(): Observable<string[]> {
     return of(['ORG#1', 'ORG#2', 'ORG#3', 'ORG#4']);
