@@ -1,98 +1,104 @@
-<div class="w-80 transition-all bg-[var(--light)] h-full pt-3">
-  <div class="h-full pb-5">
-    <div class="flex flex-col justify-evenly items-center gap-5 h-full">
-      <span class="logo text-2xl text-center w-full">Data Collection</span>
-      <div class="flex flex-col h-1/2 w-full mb-auto items-center">
-        <div
-          class="cursor-pointer flex justify-start gap-5 w-3/4 pl-10 hover:bg-[var(--shadow-light)] hover:bg-opacity-50 h-[60px] rounded-md transition-all"
-          [routerLink]="['./home']"
-          id="home"
-          routerLinkActive="!bg-[var(--shadow-light)] hover:!bg-opacity-100"
-        >
-          <img
-            src="../../../../assets/images/icons/house-fill-svgrepo-com.svg"
-            alt="home"
-            width="28"
-          />
-          <span class="text-dark self-center font-semibold">Home</span>
-        </div>
-        <div
-          class="cursor-pointer flex justify-start gap-5 mt-8 w-3/4 pl-10 hover:bg-[var(--shadow-light)] hover:bg-opacity-50 h-[60px] rounded-md transition-all"
-          [routerLink]="['./projects']"
-          routerLinkActive="!bg-[var(--shadow-light)] hover:!bg-opacity-100"
-          id="projects"
-        >
-          <img
-            src="../../../../assets/images/icons/dashboard-svgrepo-com.svg"
-            alt="projects"
-            width="28"
-          />
-          <span class="text-dark font-semibold self-center">Projects</span>
-        </div>
-        <div
-          class="cursor-pointer flex justify-start gap-5 mt-8 w-3/4 pl-10 hover:bg-[var(--shadow-light)] hover:bg-opacity-50 h-[60px] rounded-md transition-all"
-          id="logs"
-          [routerLink]="['./logs']"
-          routerLinkActive="!bg-[var(--shadow-light)] hover:!bg-opacity-100"
-        >
-          <img
-            src="../../../../assets/images/icons/book-1-svgrepo-com.svg"
-            alt="logs"
-            width="28"
-          />
-          <span class="text-dark font-semibold self-center">Logs</span>
-        </div>
-        <div
-          class="cursor-pointer flex justify-start gap-5 mt-8 w-3/4 pl-10 hover:bg-[var(--shadow-light)] hover:bg-opacity-50 h-[60px] rounded-md transition-all"
-          [routerLink]="['./search']"
-          id="search"
-          routerLinkActive="!bg-[var(--shadow-light)] hover:!bg-opacity-100"
-        >
-          <img
-            src="../../../../assets/images/icons/search-magnifying-glass-svgrepo-com.svg"
-            alt="search"
-            width="28"
-          />
-          <span class="text-dark font-semibold self-center">Search</span>
-        </div>
-        <div
-          class="cursor-pointer flex justify-start gap-5 mt-8 w-3/4 pl-10 hover:bg-[var(--shadow-light)] hover:bg-opacity-50 h-[60px] rounded-md transition-all"
-          id="pins"
-          [routerLink]="['./pins']"
-          routerLinkActive="!bg-[var(--shadow-light)] hover:!bg-opacity-100"
-        >
-          <img
-            src="../../../../assets/images/icons/like-svgrepo-com.svg"
-            alt="pins"
-            width="28"
-          />
-          <span class="text-dark font-semibold self-center">Pins</span>
-        </div>
-      </div>
-      <div class="flex flex-col items-center justify-between gap-y-5 w-full">
-        <div
-          class="cursor-pointer flex justify-start gap-5 w-3/4 hover:bg-[var(--shadow-light)] hover:bg-opacity-50 h-[60px] rounded-md transition-all pl-5"
-          [routerLink]="['../settings']"
-        >
-          <img
-            src="../../../../assets/images/icons/settings-ui-svgrepo-com.svg"
-            alt="setting"
-            width="28"
-          />
-          <span class="text-dark font-semibold self-center">Settings</span>
-        </div>
-        <div
-          class="cursor-pointer flex justify-start gap-5 w-3/4 hover:bg-[var(--shadow-light)] hover:bg-opacity-50 h-[60px] rounded-md transition-all pl-5"
-          (click)="logout()"
-        >
-          <img
-            src="../../../../../assets/images/icons/logout-svgrepo-com.svg"
-            alt="setting"
-            width="28"
-          />
-          <span class="text-dark font-semibold self-center w-3/4">Logout</span>
-        </div>
-      </div>
+<div
+  class="mobile:invisible w-[33vw] max-w-[20rem] transition-all bg-[var(--light)] h-full flex flex-col justify-start items-center gap-5 laptop:gap-0"
+>
+  <!-- logo -->
+  <span class="logo text-2xl text-center w-full mt-3">Data Collection</span>
+  <!-- dashboard nav buttons -->
+  <div class="flex flex-col w-full mb-auto items-center justify-between h-1/2 mt-3">
+    <!-- home button -->
+    <div
+      class="cursor-pointer text-[var(--dark)] flex justify-start gap-5 w-3/4 pl-10 hover:bg-[var(--shadow-light)] h-[60px] laptop:h-[40px] rounded-md transition-all"
+      [routerLink]="['./home']"
+      id="home"
+      routerLinkActive="bg-[var(--shadow-light)] !text-[var(--light-accent-secondary)]"
+    >
+      <img
+        src="../../../../assets/images/icons/house-fill-svgrepo-com.svg"
+        alt="home"
+        width="28"
+      />
+      <span class="self-center font-semibold">Home</span>
+    </div>
+    <!-- projects button -->
+    <div
+      class="cursor-pointer text-[var(--dark)] flex justify-start gap-5 w-3/4 pl-10 hover:bg-[var(--shadow-light)] h-[60px] laptop:h-[40px] rounded-md transition-all"
+      [routerLink]="['./projects']"
+      routerLinkActive="bg-[var(--shadow-light)] !text-[var(--light-accent-secondary)]"
+      id="projects"
+    >
+      <img
+        src="../../../../assets/images/icons/dashboard-svgrepo-com.svg"
+        alt="projects"
+        width="28"
+      />
+      <span class="font-semibold self-center">Projects</span>
+    </div>
+    <!-- logs button -->
+    <div
+      class="cursor-pointer text-[var(--dark)] flex justify-start gap-5 w-3/4 pl-10 hover:bg-[var(--shadow-light)] h-[60px] laptop:h-[40px] rounded-md transition-all"
+      id="logs"
+      [routerLink]="['./logs']"
+      routerLinkActive="bg-[var(--shadow-light)] !text-[var(--light-accent-secondary)]"
+    >
+      <img
+        src="../../../../assets/images/icons/book-1-svgrepo-com.svg"
+        alt="logs"
+        width="28"
+      />
+      <span class="font-semibold self-center">Logs</span>
+    </div>
+    <!-- search button -->
+    <div
+      class="cursor-pointer text-[var(--dark)] flex justify-start gap-5 w-3/4 pl-10 hover:bg-[var(--shadow-light)] h-[60px] laptop:h-[40px] rounded-md transition-all"
+      [routerLink]="['./search']"
+      id="search"
+      routerLinkActive="bg-[var(--shadow-light)] !text-[var(--light-accent-secondary)]"
+    >
+      <img
+        src="../../../../assets/images/icons/search-magnifying-glass-svgrepo-com.svg"
+        alt="search"
+        width="28"
+      />
+      <span class="font-semibold self-center">Search</span>
+    </div>
+    <!-- pins button -->
+    <div
+      class="cursor-pointer text-[var(--dark)] flex justify-start gap-5 w-3/4 pl-10 hover:bg-[var(--shadow-light)] h-[60px] laptop:h-[40px] rounded-md transition-all"
+      id="pins"
+      [routerLink]="['./pins']"
+      routerLinkActive="bg-[var(--shadow-light)] !text-[var(--light-accent-secondary)]"
+    >
+      <img
+        src="../../../../assets/images/icons/like-svgrepo-com.svg"
+        alt="pins"
+        width="28"
+      />
+      <span class="font-semibold self-center">Pins</span>
+    </div>
+  </div>
+  <!-- settings and logout -->
+  <div class="flex flex-col items-center justify-between gap-y-5 w-full">
+    <div
+      class="cursor-pointer text-[var(--dark)] flex justify-start gap-5 w-3/4 hover:bg-[var(--shadow-light)] h-[60px] laptop:h-[40px] rounded-md transition-all pl-5"
+      [routerLink]="['../settings']"
+    >
+      <img
+        src="../../../../assets/images/icons/settings-ui-svgrepo-com.svg"
+        alt="setting"
+        width="28"
+      />
+      <span class="font-semibold self-center">Settings</span>
+    </div>
+    <div
+      class="cursor-pointer text-[var(--dark)] flex justify-start gap-5 w-3/4 hover:bg-[var(--shadow-light)] h-[60px] laptop:h-[40px] rounded-md transition-all pl-5"
+      (click)="logout()"
+    >
+      <img
+        src="../../../../../assets/images/icons/logout-svgrepo-com.svg"
+        alt="setting"
+        width="28"
+      />
+      <span class="font-semibold self-center w-3/4">Logout</span>
     </div>
   </div>
 </div>
