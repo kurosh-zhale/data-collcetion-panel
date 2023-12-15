@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://api.molevision.de/',
   firebase: {
     apiKey: 'AIzaSyB-vkoRELEBC4mwPB1wh30a4o9m-VyfCGo',
     authDomain: 'data-collection-angular.firebaseapp.com',
